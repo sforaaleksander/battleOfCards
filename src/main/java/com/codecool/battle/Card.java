@@ -1,4 +1,4 @@
-package src.main.java.com.codecool.battle;
+package com.codecool.battle;
 public class Card {
     private String name;
     private int weight;
