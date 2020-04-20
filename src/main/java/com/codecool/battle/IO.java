@@ -26,4 +26,23 @@ public class IO {
         } while (!validInput);
         return userInput;
     }
+
+    public int gatherIntInput(String title, int range) {
+        System.out.println(title);
+        String userInput;
+        int userInt = 1;
+        boolean validInput = false;
+        while (!validInput) {
+            userInput = scan.next();
+            if (!userInput.equals("")) {
+                if (userInput.matches("^[0-9]*$")) {
+                    userInt = Integer.parseInt(userInput);
+                    if (userInt > 0 && userInt <= range) {
+                        validInput = true;
+                    }
+                }
+            }
+        }
+        return userInt;
+    }
 }
