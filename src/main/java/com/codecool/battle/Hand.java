@@ -14,12 +14,13 @@ public class Hand {
     }
 
     public void moveTopCardToTable(CardsOnTable onTable) {
-        Card topCard = cards.get(cards.size() - 1);
+        Card topCard = getTopCard();
         onTable.addCard(topCard);
         cards.remove(topCard);
+    }
 
-       
-        
+    public Card getTopCard(){
+        return cards.get(cards.size() - 1);
     }
 
 }
