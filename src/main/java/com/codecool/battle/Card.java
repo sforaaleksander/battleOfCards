@@ -1,4 +1,5 @@
 package com.codecool.battle;
+
 public class Card {
     private String name;
     private int weight;
@@ -6,17 +7,17 @@ public class Card {
     private int maxSpeed;
     private int numberOfTeeth;
 
-    Card(String name){
+    Card(String name) {
         this.name = name;
     }
 
-	public void setValues(int[] values) {
+    public void setValues(int[] values) {
         this.weight = values[0];
         this.roarVolume = values[1];
         this.maxSpeed = values[2];
         this.numberOfTeeth = values[3];
     }
-    
+
     public String getName() {
         return name;
     }
@@ -36,6 +37,5 @@ public class Card {
     public int getNumberOfTeeth() {
         return numberOfTeeth;
     }
-
 
 }

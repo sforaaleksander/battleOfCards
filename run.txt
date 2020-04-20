@@ -1,0 +1,2 @@
+find src/main/java/com/codecool/battle -name "*.java" > production.txt && mkdir -p out/production && javac @production.txt -d out/production && java -cp out/production/ src.main.java.com.codecool.battle.Main
+

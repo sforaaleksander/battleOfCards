@@ -1,0 +1,12 @@
+src/main/java/com/codecool/battle/Deck.java
+src/main/java/com/codecool/battle/CardsOnTable.java
+src/main/java/com/codecool/battle/Game.java
+src/main/java/com/codecool/battle/IO.java
+src/main/java/com/codecool/battle/Hand.java
+src/main/java/com/codecool/battle/UI.java
+src/main/java/com/codecool/battle/Playing.java
+src/main/java/com/codecool/battle/Player.java
+src/main/java/com/codecool/battle/Main.java
+src/main/java/com/codecool/battle/Card.java
+src/main/java/com/codecool/battle/CardRepository.java
+src/main/java/com/codecool/battle/CardParser.java
