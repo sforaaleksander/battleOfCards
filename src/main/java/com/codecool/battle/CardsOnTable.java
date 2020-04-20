@@ -14,6 +14,10 @@ public class CardsOnTable {
         return cards;
     }
 
+    public void addCard(Card card){
+        cards.add(card);
+    }
+
     public void addCards(List<Card> newCards){
         cards.addAll(newCards);
     }
