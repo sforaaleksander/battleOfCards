@@ -1,8 +1,8 @@
-package src.main.java.com.codecool.battle;
+package com.codecool.battle;
 
 public class Main {
 
     public static void main(String[] args) {
-        new CardParser("resources/dinosaurs.xml");
+        new CardParser("src/main/resources/dinosaurs.xml");
     }
 }
