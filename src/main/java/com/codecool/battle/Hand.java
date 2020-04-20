@@ -3,20 +3,20 @@ package com.codecool.battle;
 import java.util.List;
 
 public class Hand {
-    private List<Card> handCards;
+    private List<Card> cards;
 
-    public List<Card> getHandCards() {
-        return handCards;
+    public List<Card> getCards() {
+        return cards;
     }
 
     public void addHandCards(CardsOnTable newCards) {
-        handCards.addAll(newCards.getCards());
+        cards.addAll(newCards.getCards());
     }
 
     public void moveTopCardToTable(CardsOnTable onTable) {
-        Card topCard = handCards.get(handCards.size() - 1);
+        Card topCard = cards.get(cards.size() - 1);
         onTable.addCard(topCard);
-        handCards.remove(topCard);
+        cards.remove(topCard);
 
        
         
