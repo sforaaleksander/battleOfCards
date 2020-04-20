@@ -3,9 +3,7 @@ package com.codecool.battle;
 public class UI {
     Game game;
 
-    public UI(Game game) {
-        this.game = game;
-    }
+    public UI(){}
 
     public void displayMenu() {
         System.out.println("(1) Start new game");
@@ -14,12 +12,15 @@ public class UI {
         System.out.println("(0) Exit");
     }
 
-    public void displayPlayerTopCard() {
+    public void setGame(Game game){
+        this.game = game;
+    }
 
+
+    public void displayPlayerTopCard() {
     }
 
     public void displayTable() {
-
     }
 
     public void clearScreen() {
