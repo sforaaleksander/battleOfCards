@@ -13,7 +13,7 @@ public class Hand {
         handCards.addAll(newCards.getCards());
     }
 
-    public void putCardOnTable(CardsOnTable onTable) {
+    public void moveTopCardToTable(CardsOnTable onTable) {
         Card topCard = handCards.get(handCards.size() - 1);
         onTable.addCard(topCard);
         handCards.remove(topCard);
