@@ -2,46 +2,46 @@
 <Dinos>
 	<Dino name ="tyranosaurus">
 		<Attributes>
-			<Attr type="weight">1500</Attr>
-			<Attr type="roarVolume">700</Attr>
-			<Attr type="maxSpeed">50</Attr>
-			<Attr type="numberOfTeeth">100</Attr>
+			<Attr type="weight">5000</Attr>
+			<Attr type="roarVolume">8000</Attr>
+			<Attr type="maxSpeed">2000</Attr>
+			<Attr type="numberOfTeeth">1000</Attr>
 		</Attributes>
 	</Dino>
 
 	<Dino name ="nigersaurus">
 		<Attributes>
-			<Attr type="weight">2000</Attr>
-			<Attr type="roarVolume">700</Attr>
-			<Attr type="maxSpeed">25</Attr>
-			<Attr type="numberOfTeeth">500</Attr>
+			<Attr type="weight">5000</Attr>
+			<Attr type="roarVolume">5000</Attr>
+			<Attr type="maxSpeed">1000</Attr>
+			<Attr type="numberOfTeeth">9000</Attr>
 		</Attributes>
 	</Dino>
 
 	<Dino name ="velociraptor">
 		<Attributes>
-			<Attr type="weight">500</Attr>
-			<Attr type="roarVolume">1000</Attr>
-			<Attr type="maxSpeed">250</Attr>
-			<Attr type="numberOfTeeth">50</Attr>
+			<Attr type="weight">2000</Attr>
+			<Attr type="roarVolume">7000</Attr>
+			<Attr type="maxSpeed">8000</Attr>
+			<Attr type="numberOfTeeth">2000</Attr>
 		</Attributes>
 	</Dino>
 
 	<Dino name ="diplodocus">
 		<Attributes>
-			<Attr type="weight">5000</Attr>
-			<Attr type="roarVolume">50</Attr>
-			<Attr type="maxSpeed">25</Attr>
-			<Attr type="numberOfTeeth">100</Attr>
+			<Attr type="weight">9000</Attr>
+			<Attr type="roarVolume">1000</Attr>
+			<Attr type="maxSpeed">1000</Attr>
+			<Attr type="numberOfTeeth">2000</Attr>
 		</Attributes>
 	</Dino>
 
 	<Dino name ="pterodactylus">
 		<Attributes>
-			<Attr type="weight">500</Attr>
-			<Attr type="roarVolume">100</Attr>
-			<Attr type="maxSpeed">250</Attr>
-			<Attr type="numberOfTeeth">50</Attr>
+			<Attr type="weight">1000</Attr>
+			<Attr type="roarVolume">2000</Attr>
+			<Attr type="maxSpeed">9000</Attr>
+			<Attr type="numberOfTeeth">3000</Attr>
 		</Attributes>
 	</Dino>
 </Dinos>
