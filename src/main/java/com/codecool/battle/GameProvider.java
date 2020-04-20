@@ -3,6 +3,9 @@ package com.codecool.battle;
 import java.util.Map;
 
 public class GameProvider {
+
+    // TODO STATIC OR WHAT???
+    
     public static IO io;
     private Map<String, Runnable> mainMenuMap;
     
