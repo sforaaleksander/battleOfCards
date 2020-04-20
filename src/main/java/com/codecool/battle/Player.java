@@ -4,6 +4,12 @@ public class Player implements Playing {
     private String name;
     private Hand hand;
 
+    public Player(){}
+
+    public void setName(String name){
+        this.name = name;
+    }
+
     @Override
     public boolean hasCards() {
         return this.getHand().getCards().isEmpty();
