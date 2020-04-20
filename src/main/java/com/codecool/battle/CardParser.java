@@ -10,8 +10,10 @@ import java.io.File;
 
 public class CardParser {
     Document doc;
+    CardRepository cardRepository;
 
     public CardParser(String xmlPath){
+        this.cardRepository = new CardRepository();
         loadXmlDocument(xmlPath);
         this.parse();
     }
@@ -44,7 +46,10 @@ public class CardParser {
             String name = element.getAttribute("name");
             Card card = new Card(name);
             setAttributeValues(card, element);
+
         System.out.println(card.getName());
+        
+        this.cardRepository.addCard(card);
         }
     }
 
