@@ -72,7 +72,8 @@ public class Game {
         }
     }
 
-    public boolean checkIfIsWinner(String attribute) {
+    
+    public boolean checkIfIsRoundWinner(String attribute) {
         List<Integer> highestValues = new ArrayList<>();
         highestValues.add(players.get(0).getHand().getTopCard().getValueByType(attribute));
 
@@ -91,6 +92,7 @@ public class Game {
         return false;
     }
 
+
     public Player returnRoundWinner(String attribute) {
         Player playerWithHighestValue = players.get(0);
         int higestValue = players.get(0).getHand().getTopCard().getValueByType(attribute);
@@ -103,6 +105,4 @@ public class Game {
         }
         return playerWithHighestValue;
     }
-
-
 }
