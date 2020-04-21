@@ -10,11 +10,12 @@ public class Game {
     private int numberOfComputerPlayers;
     private IO io;
 
-    public Game(int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
+    public Game(Deck deck, int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
         this.players = new Player[numberOfHumanPlayers + numberOfComputerPlayers];
         this.numberOfHumanPlayers = numberOfHumanPlayers;
         this.numberOfComputerPlayers = numberOfComputerPlayers;
         this.io = io;
+        this.deck = deck;
         createHumanPlayers();
         createComputerPlayers();
         setPlayersNames(io);

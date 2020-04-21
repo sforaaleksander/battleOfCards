@@ -8,6 +8,7 @@ public class GameProvider {
     private UI ui;
     private Map<String, Runnable> mainMenuMap;
     private boolean isRunning;
+    private Deck deck;
 
     GameProvider() {
         initialize();
@@ -22,7 +23,8 @@ public class GameProvider {
     }
 
     private void initialize() {
-        new CardParser("src/main/resources/dinosaurs.xml");
+        CardParser cardParser = new CardParser("src/main/resources/dinosaurs.xml");
+        deck = new Deck(cardParser.cardRepository);
         io = new IO();
         ui = new UI();
         createMenuMap();
@@ -41,7 +43,7 @@ public class GameProvider {
         int numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 4);
         int numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?",
                 4 - numberOfHumanPlayers);
-        new Game(numberOfHumanPlayers, numberOfComputerPlayers, io);
+        new Game(deck, numberOfHumanPlayers, numberOfComputerPlayers, io);
     }
 
     public void howTo() {

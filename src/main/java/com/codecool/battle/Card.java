@@ -12,8 +12,7 @@ public class Card {
         this.attributes = new HashMap<>();
     }
 
-
-    public void setAttributeByType(String type, Integer value){
+    public void setAttributeByType(String type, Integer value) {
         attributes.put(type, value);
     }
 
@@ -21,11 +20,15 @@ public class Card {
         return name;
     }
 
-    public int getValueByType(String type){
+    public int getValueByType(String type) {
         return attributes.get(type);
     }
 
     public Map<String, Integer> getAttributes() {
         return attributes;
+    }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
