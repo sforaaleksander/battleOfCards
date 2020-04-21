@@ -1,14 +1,14 @@
 package com.codecool.battle;
 
-import java.util.List;
+import java.util.Stack;
 
 public class Deck {
-    private List<Card> cards;
+    private Stack<Card> cards;
     private CardParser cardParser;
 
     Deck(){}
 
-    public List<Card> getCards() {
+    public Stack<Card> getCards() {
         return cards;
     }
 
