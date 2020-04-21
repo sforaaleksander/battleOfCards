@@ -6,7 +6,8 @@ public class Deck {
     private Stack<Card> cards;
     private CardParser cardParser;
 
-    Deck(){}
+    Deck() {
+    }
 
     public Stack<Card> getCards() {
         return cards;
@@ -16,5 +17,16 @@ public class Deck {
         return cardParser;
     }
 
-    public void multipleRepoCards(){}
+    public void multipleRepoCards() {
+    }
+
+    public void distributeCards(Player[] players){
+        int cardsPerPlayer = cards.size() / players.length;
+        int playerNo = 0;
+        for (int i=0; i<cardsPerPlayer; i++){
+            players[playerNo].getHand().addCard(cards.pop());
+        }
+
+
+    }
 }
