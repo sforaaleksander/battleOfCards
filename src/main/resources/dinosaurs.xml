@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dinos>
-	<Dino name ="tyranosaurus">
+	<Dino name ="tyrannosaurus">
 		<Attributes>
 			<Attr type="weight">5000</Attr>
 			<Attr type="roarVolume">8000</Attr>

@@ -25,7 +25,8 @@ public class GameProvider {
     }
 
     private void initialize() {
-        CardParser cardParser = new CardParser("src/main/resources/dinosaurs.xml");
+        String currentDirectory = System.getProperty("user.dir");
+        CardParser cardParser = new CardParser(currentDirectory + "/src/main/resources/dinosaurs.xml");
         deck = new Deck(cardParser.getCardRepository());
         io = new IO();
         ui = new UI();
