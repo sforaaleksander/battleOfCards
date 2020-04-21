@@ -1,10 +1,8 @@
 package com.codecool.battle;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
-    private List<Player> players;
+    private Player[] players;
     private int currentPlayerInt;
     private Deck deck;
     private CardsOnTable cardsOnTable;
@@ -13,7 +11,7 @@ public class Game {
     private IO io;
 
     public Game(int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
-        this.players = new ArrayList<>();
+        this.players = new Player[numberOfHumanPlayers + numberOfComputerPlayers];
         this.numberOfHumanPlayers = numberOfHumanPlayers;
         this.numberOfComputerPlayers = numberOfComputerPlayers;
         this.io = io;
@@ -26,19 +24,19 @@ public class Game {
         return io;
     }
 
-    public List<Player> getPlayers() {
+    public Player[] getPlayers() {
         return players;
     }
 
     public void changeToNextPlayer(){
         currentPlayerInt += 1;
-        if (currentPlayerInt == players.size()){
+        if (currentPlayerInt == players.length){
             currentPlayerInt = 0;
         }
     }
 
     public Player getCurrentPlayer() {
-        return players.get(currentPlayerInt);
+        return players[currentPlayerInt];
     }
 
     public Deck getDeck() {
@@ -52,14 +50,14 @@ public class Game {
     public void createHumanPlayers() {
         for (int i = 0; i < numberOfHumanPlayers; i++) {
             Player player = new HumanPlayer(io);
-            players.add(player);
+            players[i] = player;
         }
     }
 
     public void createComputerPlayers() {
-        for (int i = 0; i < numberOfComputerPlayers; i++) {
+        for (int i = numberOfHumanPlayers; i < numberOfHumanPlayers + numberOfComputerPlayers; i++) {
             Player player = new ComputerPlayer();
-            players.add(player);
+            players[i] = player;
         }
     }
 
