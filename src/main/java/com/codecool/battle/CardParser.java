@@ -57,15 +57,12 @@ public class CardParser {
 
         NodeList attributeList = attributesNode.getElementsByTagName("Attr");
 
-        int[] values = new int[4];
-
         for (int i = 0; i < attributeList.getLength(); i++) {
             Element attr = (Element) attributeList.item(i);
-            // String type = attr.getAttribute("type");
+            String type = attr.getAttribute("type");
             int value = Integer.valueOf(attr.getTextContent());
-            values[i] = value;
+            
+            card.setAttributeByType(type, value);
         }
-        card.setValues(values);
     }
-
 }
