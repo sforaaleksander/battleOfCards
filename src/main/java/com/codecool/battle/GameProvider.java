@@ -2,11 +2,8 @@ package com.codecool.battle;
 
 import java.util.Map;
 
-public class GameProvider {
-
-    // TODO STATIC OR WHAT???
-    
-    public static IO io;
+public class GameProvider {    
+    private IO io;
     private Map<String, Runnable> mainMenuMap;
     
     GameProvider() {
@@ -32,7 +29,7 @@ public class GameProvider {
 
     public void playGame() {
         int numberOfPlayers = io.gatherIntInput("How many players are there playing?", 4);
-        new Game(numberOfPlayers);
+        new Game(numberOfPlayers, io);
     }
 
     public void howTo(){}

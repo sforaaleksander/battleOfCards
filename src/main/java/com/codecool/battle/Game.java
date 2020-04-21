@@ -8,14 +8,16 @@ public class Game {
     private Deck deck;
     private CardsOnTable cardsOnTable;
     private int numOfPlayers;
+    private IO io;
 
-    public Game(int numOfPlayers) {
+    public Game(int numOfPlayers, IO io) {
 
         // TODO if numOfPlayer == 1 create instance of ComputerPlayer
         
         this.numOfPlayers = numOfPlayers;
+        this.io = io;
         createPlayers();
-        setPlayersNames();
+        setPlayersNames(io);
     }
 
 
@@ -43,10 +45,10 @@ public class Game {
         }
     }
 
-    public void setPlayersNames() {
+    public void setPlayersNames(IO io) {
         int count = 1;
         for (Player player : players) {
-            player.setName(GameProvider.io.gatherInput("Type in the name for player " + count + "."));
+            player.setName(io.gatherInput("Type in the name for player " + count + "."));
             count++;
         }
     }
