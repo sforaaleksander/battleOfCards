@@ -5,12 +5,16 @@ import java.util.Stack;
 public class Hand {
     private Stack<Card> cards;
 
-    public Hand(){
+    public Hand() {
         this.cards = new Stack<Card>();
     }
 
     public Stack<Card> getCards() {
         return cards;
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
     public void addHandCards(CardsOnTable newCards) {
@@ -23,7 +27,7 @@ public class Hand {
         cards.remove(topCard);
     }
 
-    public Card getTopCard(){
+    public Card getTopCard() {
         return cards.pop();
 
     }
