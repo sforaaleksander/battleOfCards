@@ -28,8 +28,9 @@ public class GameProvider {
     }
 
     public void playGame() {
-        int numberOfPlayers = io.gatherIntInput("How many players are there playing?", 4);
-        new Game(numberOfPlayers, io);
+        int numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 4);
+        int numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?", 4 - numberOfHumanPlayers);
+        new Game(numberOfHumanPlayers, numberOfComputerPlayers, io);
     }
 
     public void howTo(){}

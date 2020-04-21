@@ -7,16 +7,18 @@ public class Game {
     private Player currentPlayer;
     private Deck deck;
     private CardsOnTable cardsOnTable;
-    private int numOfPlayers;
+    private int numberOfHumanPlayers;
+    private int numberOfComputerPlayers;
     private IO io;
 
-    public Game(int numOfPlayers, IO io) {
+    public Game(int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
 
         // TODO if numOfPlayer == 1 create instance of ComputerPlayer
         
-        this.numOfPlayers = numOfPlayers;
+        this.numberOfHumanPlayers = numberOfHumanPlayers;
+        this.numberOfComputerPlayers = numberOfComputerPlayers;
         this.io = io;
-        createPlayers();
+        createHumanPlayers();
         setPlayersNames(io);
     }
 
@@ -38,8 +40,15 @@ public class Game {
         return cardsOnTable;
     }
 
-    public void createPlayers() {
-        for (int i = 0; i < numOfPlayers; i++) {
+    public void createHumanPlayers() {
+        for (int i = 0; i < numberOfHumanPlayers; i++) {
+            Player player = new Player();
+            players.add(player);
+        }
+    }
+
+    public void createComputerPlayers() {
+        for (int i = 0; i < numberOfComputerPlayers; i++) {
             Player player = new Player();
             players.add(player);
         }
@@ -48,7 +57,8 @@ public class Game {
     public void setPlayersNames(IO io) {
         int count = 1;
         for (Player player : players) {
-            player.setName(io.gatherInput("Type in the name for player " + count + "."));
+            String humanOrComputer = player instanceof HumanPlayer ? "player " : "computer ";
+            player.setName(io.gatherInput("Type in the name for " + humanOrComputer + count + "."));
             count++;
         }
     }
