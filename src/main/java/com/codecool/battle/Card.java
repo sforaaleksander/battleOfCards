@@ -1,41 +1,27 @@
 package com.codecool.battle;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Card {
     private String name;
-    private int weight;
-    private int roarVolume;
-    private int maxSpeed;
-    private int numberOfTeeth;
+    private Map<String, Integer> attributes;
 
     Card(String name) {
         this.name = name;
+        this.attributes = new HashMap<>();
     }
 
-    public void setValues(int[] values) {
-        this.weight = values[0];
-        this.roarVolume = values[1];
-        this.maxSpeed = values[2];
-        this.numberOfTeeth = values[3];
+
+    public void setAttributeByType(String type, Integer value){
+        attributes.put(type, value);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getValueByType(String type){
+        return attributes.get(type);
     }
-
-    public int getRoarVolume() {
-        return roarVolume;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public int getNumberOfTeeth() {
-        return numberOfTeeth;
-    }
-
 }
