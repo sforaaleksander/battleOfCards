@@ -31,4 +31,13 @@ public class Card {
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + "\n");
+        for (String key : attributes.keySet()) {
+            sb.append(key + ": " + attributes.get(key) + "\n");
+        }
+        return sb.toString();
+    }
 }
