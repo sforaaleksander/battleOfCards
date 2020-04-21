@@ -72,4 +72,23 @@ public class Game {
         }
     }
 
+    public boolean checkIfIsWinner(String attribute) {
+        List<Integer> highestValues = new ArrayList<>();
+        highestValues.add(players.get(0).getHand().getTopCard().getValueByType(attribute));
+
+        for (Player player : players) {
+            if (player.getHand().getTopCard().getValueByType(attribute) > highestValues.get(0)) {
+                highestValues.removeAll(highestValues);
+                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            }
+            if (player.getHand().getTopCard().getValueByType(attribute) == highestValues.get(0)) {
+                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            }
+        }
+        if (highestValues.size() == 1) {
+            return true;
+        }
+        return false;
+    }
+
 }
