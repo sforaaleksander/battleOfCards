@@ -5,6 +5,7 @@ public class HumanPlayer extends Player {
 
     public HumanPlayer(IO io){
         super();
+        this.io = io;
     }
 
     public IO getIo() {
@@ -13,7 +14,13 @@ public class HumanPlayer extends Player {
 
     @Override
     public String chooseAttribute() {
-        // TODO
-        return null;
+        int userInput = io.gatherIntInput("Enter the attribute number you choose", 4);
+        
+        for (CardAttribute attribute : CardAttribute.values()) {
+            if (userInput == attribute.getValue()) {
+                return attribute.name();
+            }
+        }
+		return null;
     }
 }
