@@ -23,8 +23,8 @@ public class GameProvider {
 
     private void initialize() {
         new CardParser("src/main/resources/dinosaurs.xml");
-        io = new IO();
         ui = new UI();
+        io = new IO(ui);
         createMenuMap();
         isRunning = true;
     }
