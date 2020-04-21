@@ -21,6 +21,7 @@ public class Game {
         this.numberOfComputerPlayers = numberOfComputerPlayers;
         this.io = io;
         createHumanPlayers();
+        createComputerPlayers();
         setPlayersNames(io);
     }
 
@@ -46,14 +47,14 @@ public class Game {
 
     public void createHumanPlayers() {
         for (int i = 0; i < numberOfHumanPlayers; i++) {
-            Player player = new Player();
+            Player player = new HumanPlayer();
             players.add(player);
         }
     }
 
     public void createComputerPlayers() {
         for (int i = 0; i < numberOfComputerPlayers; i++) {
-            Player player = new Player();
+            Player player = new ComputerPlayer();
             players.add(player);
         }
     }
