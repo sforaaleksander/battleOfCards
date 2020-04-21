@@ -30,6 +30,13 @@ public class Game {
         return players;
     }
 
+    public void changeToNextPlayer(){
+        currentPlayerInt += 1;
+        if (currentPlayerInt == players.size()){
+            currentPlayerInt = 0;
+        }
+    }
+
     public Player getCurrentPlayer() {
         return players.get(currentPlayerInt);
     }
