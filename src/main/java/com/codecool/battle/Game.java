@@ -91,4 +91,18 @@ public class Game {
         return false;
     }
 
+    public Player returnRoundWinner(String attribute) {
+        Player playerWithHighestValue = players.get(0);
+        int higestValue = players.get(0).getHand().getTopCard().getValueByType(attribute);
+
+        for (Player player : players) {
+            if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
+                playerWithHighestValue = player;
+                higestValue = player.getHand().getTopCard().getValueByType(attribute);
+            }
+        }
+        return playerWithHighestValue;
+    }
+
+
 }
