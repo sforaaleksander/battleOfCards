@@ -1,8 +1,9 @@
 package com.codecool.battle;
 
 public class HumanPlayer extends Player {
-
-    public HumanPlayer(){
+    private IO io;
+    
+    public HumanPlayer(IO io){
         super();
     }
 

@@ -51,7 +51,7 @@ public class Game {
 
     public void createHumanPlayers() {
         for (int i = 0; i < numberOfHumanPlayers; i++) {
-            Player player = new HumanPlayer();
+            Player player = new HumanPlayer(io);
             players.add(player);
         }
     }
