@@ -4,11 +4,13 @@ public class UI {
     Game game;
     private final int TABLE_WIDTH = 150;
     private final int TABLE_HEIGTH = 40;
+    private final int startY = 2;
+    private final int startX = 2;
 
     public void displayMenu() {
         clearScreen();
         printTable();
-        printOnTable(2, 2, new String[]{"(1) Start new game",
+        printOnTable(startY, startX, new String[]{"(1) Start new game",
                                         "(2) How to play",
                                         "(3) About autors",
                                         "(0) Exit"});
@@ -22,18 +24,33 @@ public class UI {
         System.out.println("▊".repeat(TABLE_WIDTH));
     }
 
-    private void printOnTable(int x, int y, String[] toPrint) {
+    public void printOnTable(int y, int x, String[] toPrint) {
         for (String string : toPrint) {
             setCursorPosition(y++, x);
             System.out.print(string);
         }
     }
 
+    public void printOnTable(int y, int x, String toPrint) {
+        printOnTable(x, y, stringToArray(toPrint));
+    }
+
+    private String[] stringToArray(String str) {
+        return str.split("\n");
+    }
+
     public void setGame(Game game) {
         this.game = game;
     }
 
-    public void displayPlayerTopCard() {
+    public void displayPlayerTopCard(Player player) {
+        clearScreen();
+        printOnTable(startY, startX, player.getHand().getTopCard().toString());
+    }
+
+    public void displayPlayerTopCard(int y, int x, Player player) {
+        clearScreen();
+        printOnTable(y, x, player.getHand().getTopCard().toString());
     }
 
     public void displayTable() {
