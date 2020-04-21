@@ -1,5 +1,6 @@
 package com.codecool.battle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -15,6 +16,7 @@ public class Game {
 
         // TODO if numOfPlayer == 1 create instance of ComputerPlayer
         
+        this.players = new ArrayList<>();
         this.numberOfHumanPlayers = numberOfHumanPlayers;
         this.numberOfComputerPlayers = numberOfComputerPlayers;
         this.io = io;
@@ -22,7 +24,9 @@ public class Game {
         setPlayersNames(io);
     }
 
-
+    public IO getIo() {
+        return io;
+    }
 
     public List<Player> getPlayers() {
         return players;
