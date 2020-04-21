@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Game {
     private List<Player> players;
-    private Player currentPlayer;
+    private int currentPlayerInt;
     private Deck deck;
     private CardsOnTable cardsOnTable;
     private int numberOfHumanPlayers;
@@ -13,9 +13,6 @@ public class Game {
     private IO io;
 
     public Game(int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
-
-        // TODO if numOfPlayer == 1 create instance of ComputerPlayer
-        
         this.players = new ArrayList<>();
         this.numberOfHumanPlayers = numberOfHumanPlayers;
         this.numberOfComputerPlayers = numberOfComputerPlayers;
@@ -34,7 +31,7 @@ public class Game {
     }
 
     public Player getCurrentPlayer() {
-        return currentPlayer;
+        return players.get(currentPlayerInt);
     }
 
     public Deck getDeck() {
