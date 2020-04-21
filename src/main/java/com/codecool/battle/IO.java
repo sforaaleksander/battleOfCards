@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class IO {
     public Scanner scan;
 
-    public void initializeScanner() {
+    IO(){
         scan = new Scanner(System.in);
         scan.useDelimiter(System.lineSeparator());
     }
+
 
     public String gatherInput(String title) {
         System.out.println(title);

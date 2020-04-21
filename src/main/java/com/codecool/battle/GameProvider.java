@@ -1,5 +1,6 @@
 package com.codecool.battle;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class GameProvider {    
@@ -15,6 +16,7 @@ public class GameProvider {
     }
 
     private void createMenuMap(){
+        mainMenuMap = new HashMap<>();
         mainMenuMap.put("1", () -> playGame());
         mainMenuMap.put("2", () -> howTo());
         mainMenuMap.put("3", () -> about());
