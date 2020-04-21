@@ -6,6 +6,7 @@ import java.util.Map;
 public class Card {
     private String name;
     private Map<String, Integer> attributes;
+    private String[] image;
 
     Card(String name) {
         this.name = name;
@@ -18,6 +19,14 @@ public class Card {
 
     public String getName() {
         return name;
+    }
+
+    public String[] getImage() {
+        return image;
+    }
+
+    public void setImage(String[] image) {
+        this.image = image;
     }
 
     public int getValueByType(String type) {
