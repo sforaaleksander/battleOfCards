@@ -1,9 +1,9 @@
-package com.codecool.battle;
+// package com.codecool.battle;
 
-public interface Playing {
+// public interface Playing {
     
-    boolean hasCards();
-    void chooseAttribute();
-    String getName();
-    Hand getHand();
-}
+//     boolean hasCards();
+//     void chooseAttribute();
+//     String getName();
+//     Hand getHand();
+// }

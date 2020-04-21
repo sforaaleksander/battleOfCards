@@ -24,4 +24,8 @@ public class Card {
     public int getValueByType(String type){
         return attributes.get(type);
     }
+
+    public Map<String, Integer> getAttributes() {
+        return attributes;
+    }
 }
