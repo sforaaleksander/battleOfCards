@@ -24,7 +24,7 @@ public class GameProvider {
 
     private void initialize() {
         CardParser cardParser = new CardParser("src/main/resources/dinosaurs.xml");
-        deck = new Deck(cardParser.cardRepository);
+        deck = new Deck(cardParser.getCardRepository());
         io = new IO();
         ui = new UI();
         createMenuMap();
