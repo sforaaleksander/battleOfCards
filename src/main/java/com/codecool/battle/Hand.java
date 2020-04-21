@@ -1,17 +1,20 @@
 package com.codecool.battle;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 public class Hand {
-    private List<Card> cards;
+    private Stack<Card> cards;
 
-    public Hand(){
-        this.cards = new ArrayList<>();
+    public Hand() {
+        this.cards = new Stack<Card>();
     }
 
-    public List<Card> getCards() {
+    public Stack<Card> getCards() {
         return cards;
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
     public void addHandCards(CardsOnTable newCards) {
@@ -24,8 +27,9 @@ public class Hand {
         cards.remove(topCard);
     }
 
-    public Card getTopCard(){
-        return cards.get(cards.size() - 1);
+    public Card getTopCard() {
+        return cards.pop();
+
     }
 
 }

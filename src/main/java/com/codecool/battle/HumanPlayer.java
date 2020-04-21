@@ -2,10 +2,14 @@ package com.codecool.battle;
 
 public class HumanPlayer extends Player {
     private IO io;
-    
+
     public HumanPlayer(IO io){
         super();
         this.io = io;
+    }
+
+    public IO getIo() {
+        return io;
     }
 
     @Override
