@@ -7,7 +7,8 @@ public class Human extends Player {
     }
 
     @Override
-    public void chooseAttribute() {
-        // TODO 
+    public String chooseAttribute() {
+        // TODO
+        return null;
     }
 }

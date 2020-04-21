@@ -17,7 +17,9 @@ public abstract class Player {
         return this.getHand().getCards().isEmpty();
     }
 
-    public void chooseAttribute() {}
+    public String chooseAttribute() {
+        return null;
+    }
     
     public String getName() {
         return name;
