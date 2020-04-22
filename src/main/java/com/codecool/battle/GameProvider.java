@@ -18,7 +18,7 @@ public class GameProvider {
     }
     private void createMenuMap() {
         mainMenuMap = new HashMap<>();
-        mainMenuMap.put("1", () -> playGame());
+        mainMenuMap.put("1", () -> gameSetup());
         mainMenuMap.put("2", () -> howTo());
         mainMenuMap.put("3", () -> about());
         mainMenuMap.put("0", () -> exitGame());
@@ -42,7 +42,7 @@ public class GameProvider {
         }
     }
 
-    public void playGame() {
+    public void gameSetup() {
         numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 4);
         numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?",
                 4 - numberOfHumanPlayers);

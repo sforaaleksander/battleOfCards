@@ -14,6 +14,7 @@ public class Game {
         this.players = new Player[numberOfHumanPlayers + numberOfComputerPlayers];
         this.io = io;
         this.deck = deck;
+        this.currentPlayerInt = 0;
     }
 
     public IO getIo() {
