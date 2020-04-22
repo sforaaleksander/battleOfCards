@@ -56,8 +56,7 @@ public class Game {
 
     public void gamePlay() {
         while (!isGameOver()) {
-            System.out.println("INSIDE OF GAME LOOP");
-            boolean draw = true;
+            boolean draw = false;
             String userAttribute = "";
             do {
                 Player currentPlayer = players[currentPlayerInt];
@@ -67,11 +66,11 @@ public class Game {
                 ui.displayTable(players, cardsOnTable);
                 draw = checkIfRoundDraw(userAttribute);
                 cardsOnTable.collectPlayersTopCards(players);
-                if (isGameOver()){
+                if (isGameOver()) {
                     break;
                 }
             } while (draw);
-            if (isGameOver()){
+            if (isGameOver()) {
                 endGame();
                 break;
             }
