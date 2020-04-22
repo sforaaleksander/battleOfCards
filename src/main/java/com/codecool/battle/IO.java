@@ -12,14 +12,19 @@ public class IO {
         this.ui = ui;
     }
 
+    
+    public UI getUi() {
+        return ui;
+    }
+
 
     public String gatherInput(String title) {
-        ui.printOnTable(new String[]{title});
+        System.out.println(title);
         boolean validInput = true;
         String userInput = "";
         do {
             if (!validInput) {
-                ui.printOnTable(new String[]{"Your input must contain at least one character. Enter again: "});
+                System.out.println("Your input must contain at least one character. Enter again: ");
             }
             validInput = false;
             userInput = scan.next().toUpperCase();
@@ -31,7 +36,7 @@ public class IO {
     }
 
     public int gatherIntInput(String title, int range) {
-        ui.printOnTable(new String[]{title});
+        System.out.println(title);
         String userInput;
         int userInt = 1;
         boolean validInput = false;

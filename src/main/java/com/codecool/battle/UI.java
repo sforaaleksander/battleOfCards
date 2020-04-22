@@ -61,17 +61,10 @@ public class UI {
 
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
-        x = startX; 
-        y = startY;
     }
 
     public void setCursorPosition(int y, int x) {
         System.out.print("\033[" + y + ";" + x + "H");
-        this.y = y;
-        this.x = x;
     }
 
-    public void moveCursorDown() {
-        System.out.print("\033[" + ++y + ";" + x + "H");
-    }
 }
