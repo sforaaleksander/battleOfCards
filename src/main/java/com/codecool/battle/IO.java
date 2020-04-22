@@ -4,20 +4,22 @@ import java.util.Scanner;
 
 public class IO {
     public Scanner scan;
+    private UI ui;
 
-    IO(){
+    IO(UI ui){
         scan = new Scanner(System.in);
         scan.useDelimiter(System.lineSeparator());
+        this.ui = ui;
     }
 
 
     public String gatherInput(String title) {
-        System.out.println(title);
+        ui.printOnTable(new String[]{title});
         boolean validInput = true;
         String userInput = "";
         do {
             if (!validInput) {
-                System.out.println("Your input must contain at least one character. Enter again: ");
+                ui.printOnTable(new String[]{"Your input must contain at least one character. Enter again: "});
             }
             validInput = false;
             userInput = scan.next().toUpperCase();
@@ -29,7 +31,7 @@ public class IO {
     }
 
     public int gatherIntInput(String title, int range) {
-        System.out.println(title);
+        ui.printOnTable(new String[]{title});
         String userInput;
         int userInt = 1;
         boolean validInput = false;
