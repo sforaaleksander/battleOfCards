@@ -1,5 +1,6 @@
 package com.codecool.battle;
 
+import java.util.Collections;
 import java.util.Stack;
 
 public class Deck {
@@ -40,12 +41,12 @@ public class Deck {
     }
 
     public void distributeCards(Player[] players) {
+        Collections.shuffle(cards);
         int cardsPerPlayer = cards.size() / players.length;
         for (Player player : players) {
             for (int i = 0; i < cardsPerPlayer; i++) {
                 player.getHand().addCard(cards.pop());
             }
         }
-
     }
 }
