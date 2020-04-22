@@ -28,6 +28,12 @@ public class IO {
         return userInput;
     }
 
+    public String gatherEmptyInput(String title) {
+        System.out.println(title);
+        String userInput = scan.next().toUpperCase();
+        return userInput;
+    }
+
     public int gatherIntInput(String title, int rangeMin, int rangeMax) {
         System.out.println(title);
         String userInput;

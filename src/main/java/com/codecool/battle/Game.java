@@ -63,6 +63,7 @@ public class Game {
                 ui.displayPlayerTopCard(currentPlayer);
 
                 userAttribute = currentPlayer.chooseAttribute();
+                ui.getIo().gatherEmptyInput("Press enter to continue.");
                 ui.displayTable(players, cardsOnTable);
                 draw = checkIfRoundDraw(userAttribute);
                 cardsOnTable.collectPlayersTopCards(players);
