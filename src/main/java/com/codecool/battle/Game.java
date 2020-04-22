@@ -25,9 +25,9 @@ public class Game {
         return players;
     }
 
-    public void changeToNextPlayer(){
+    public void changeToNextPlayer() {
         currentPlayerInt += 1;
-        if (currentPlayerInt == players.length){
+        if (currentPlayerInt == players.length) {
             currentPlayerInt = 0;
         }
     }
@@ -44,8 +44,8 @@ public class Game {
         return cardsOnTable;
     }
 
-    private boolean isGameOver(){
-        for (Player player: players) {
+    private boolean isGameOver() {
+        for (Player player : players) {
             if (player.getHand().getCards().isEmpty()) {
                 return true;
             }
@@ -53,14 +53,39 @@ public class Game {
         return false;
     }
 
-    private void gamePlay(){
-        while (!isGameOver()){
-            
+    public void gamePlay() {
+        while (!isGameOver()) {
+            System.out.println("INSIDE OF GAME LOOP");
+            boolean draw = true;
+            String chosenAttribute = "";
+            do {
+                Player currentPlayer = players[currentPlayerInt];
+                ui.displayPlayerTopCard(currentPlayer);
+                chosenAttribute = currentPlayer.chooseAttribute();
+                ui.displayTable(players, cardsOnTable);
+                draw = checkIfRoundDraw(chosenAttribute);
+                cardsOnTable.collectPlayersTopCards(players);
+                if (isGameOver()){
+                    endGame();
+                }
+            } while (draw);
+
+            Player roundWinner = returnRoundWinner(chosenAttribute);
+
+            roundWinner.getHand().addHandCards(cardsOnTable);
+            cardsOnTable.clearTable();
+
+            changeToNextPlayer();
+
         }
     }
-    
-    
-    public boolean checkIfIsRoundWinner(String attribute) {
+
+    private void endGame() {
+        //TODO
+        System.out.println("GAME OVER");
+    }
+
+    public boolean checkIfRoundDraw(String attribute) {
         List<Integer> highestValues = new ArrayList<>();
         highestValues.add(players[0].getHand().getTopCard().getValueByType(attribute));
 
@@ -68,17 +93,15 @@ public class Game {
             if (player.getHand().getTopCard().getValueByType(attribute) > highestValues.get(0)) {
                 highestValues.removeAll(highestValues);
                 highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
-            }
-            if (player.getHand().getTopCard().getValueByType(attribute) == highestValues.get(0)) {
+            } else if (player.getHand().getTopCard().getValueByType(attribute) == highestValues.get(0)) {
                 highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
             }
         }
         if (highestValues.size() == 1) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
-
 
     public Player returnRoundWinner(String attribute) {
         Player playerWithHighestValue = players[0];

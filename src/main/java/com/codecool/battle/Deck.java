@@ -10,17 +10,22 @@ public class Deck {
     Deck(CardRepository cardRepository) {
         cards = new Stack<>();
         this.cardRepository = cardRepository;
+        multipleRepoCards();
     }
 
     public Stack<Card> getCards() {
         return cards;
     }
 
-    public void multipleRepoCards() {
+    private void multipleRepoCards() {
         int index = 0;
         while (cards.size() < DECKSIZE) {
             Card clonedCard = cloneCard(index);
             cards.add(clonedCard);
+            index++;
+            if (index == cardRepository.getCards().size()) {
+                index = 0;
+            }
         }
     }
 

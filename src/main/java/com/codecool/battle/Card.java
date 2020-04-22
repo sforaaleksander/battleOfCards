@@ -13,6 +13,18 @@ public class Card implements Comparable<Card> {
         this.attributes = new HashMap<>();
     }
 
+    private Card(String name, Map<String, Integer> attributes, String[] image) {
+        this.name = name;
+        this.attributes = new HashMap<>();
+        for (String key : attributes.keySet()) {
+            this.attributes.put(key, attributes.get(key));
+        }
+        this.image = new String[image.length];
+        for (int i=0; i<image.length; i++) {
+            this.image[i] = image[i];
+        }
+    }
+
     public void setAttributeByType(String type, Integer value) {
         attributes.put(type, value);
     }
@@ -38,7 +50,7 @@ public class Card implements Comparable<Card> {
     }
 
     protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        return new Card(this.getName(), this.getAttributes(), this.getImage());
     }
 
     @Override

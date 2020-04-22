@@ -50,6 +50,9 @@ public class GameProvider {
         createHumanPlayers(game);
         createComputerPlayers(game);
         setPlayersNames(game);
+        game.getDeck().distributeCards(game.getPlayers());
+        System.out.println("CARDS DISTRIBUTED LETS PLAY");
+        game.gamePlay();        
     }
 
     public void howTo() {

@@ -27,7 +27,7 @@ public class UI {
     }
 
     private void printTable() {
-        clearScreen();
+        // clearScreen();
         System.out.println("▊".repeat(TABLE_WIDTH));
         for (int i = 0; i < TABLE_HEIGTH; i++) {
             System.out.println("▊" + " ".repeat(TABLE_WIDTH - 2) + "▊");
@@ -62,7 +62,7 @@ public class UI {
         printOnTable(y, x, player.getHand().getTopCard().toString());
     }
 
-    public void displayTable() {
+    public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
     }
 
     public void clearScreen() {

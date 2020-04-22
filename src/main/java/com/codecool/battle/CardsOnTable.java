@@ -25,4 +25,10 @@ public class CardsOnTable {
     public void clearTable(){
         cards.clear();
     }
+
+    public void collectPlayersTopCards(Player[] players) {
+        for (Player player : players) { 
+            cards.add(player.getHand().getCards().pop());
+        }
+    }
 }
