@@ -56,14 +56,18 @@ public class UI {
     }
 
     public void displayPlayerTopCard(int y, int x, Player player) {
-        clearScreen();
+        // clearScreen();
         printOnTable(y, x, "PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
         printOnTable(++y, x, player.getHand().getTopCard().toString());
-        printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
+        // printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
-
+        for (Player player : players) {
+            System.out.println("PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
+            System.out.println("Top card " + player.getHand().getTopCard().toString());
+            System.out.println(cardsOnTable.getCards().size() + " cards on table");
+        }
     }
 
     public void clearScreen() {
@@ -71,7 +75,7 @@ public class UI {
     }
 
     public void setCursorPosition(int y, int x) {
-        System.out.print("\033[" + y + ";" + x + "H");
+        // System.out.print("\033[" + y + ";" + x + "H");
     }
 
     private void moveCursorDown(int n) {
