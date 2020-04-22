@@ -9,7 +9,7 @@ public class UI {
 
     private IO io;
 
-    UI(IO io){
+    UI(IO io) {
         this.io = io;
     }
 
@@ -21,9 +21,9 @@ public class UI {
         printTable();
 
         printOnTable(startY, startX, new String[]{"(1) Start new game",
-                                        "(2) How to play",
-                                        "(3) About autors",
-                                        "(0) Exit"});
+                                                  "(2) How to play",
+                                                  "(3) About autors",
+                                                  "(0) Exit"});
     }
 
     private void printTable() {
@@ -35,34 +35,35 @@ public class UI {
         System.out.println("▊".repeat(TABLE_WIDTH));
     }
 
-
     public void printOnTable(int y, int x, String[] toPrint) {
+        setCursorPosition(y, x);
         for (String string : toPrint) {
-            setCursorPosition(++y, x);
             System.out.print(string);
+            setCursorPosition(++y, x);
         }
     }
 
     public void printOnTable(int y, int x, String toPrint) {
-        printOnTable(x, y, stringToArray(toPrint));
+        printOnTable(y, x, stringToArray(toPrint));
     }
 
     private String[] stringToArray(String str) {
         return str.split("\n");
     }
 
-
     public void displayPlayerTopCard(Player player) {
-        clearScreen();
-        printOnTable(startY, startX, player.getHand().getTopCard().toString());
+        displayPlayerTopCard(startY, startX, player);
     }
 
     public void displayPlayerTopCard(int y, int x, Player player) {
         clearScreen();
-        printOnTable(y, x, player.getHand().getTopCard().toString());
+        printOnTable(y, x, "PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
+        printOnTable(++y, x, player.getHand().getTopCard().toString());
+        printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
+
     }
 
     public void clearScreen() {
@@ -73,4 +74,7 @@ public class UI {
         System.out.print("\033[" + y + ";" + x + "H");
     }
 
+    private void moveCursorDown(int n) {
+        System.out.print("\033[" + n + "B");
+    }
 }
