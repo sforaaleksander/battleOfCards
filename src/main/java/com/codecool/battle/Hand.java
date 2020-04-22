@@ -27,10 +27,12 @@ public class Hand {
         cards.remove(topCard);
     }
 
-    //TODO
     public Card getTopCard() {
-        return cards.pop();
+        return cards.peek();
+    }
 
+    public Card popTopCard() {
+        return cards.pop();
     }
 
 }
