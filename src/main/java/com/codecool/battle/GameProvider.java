@@ -49,9 +49,9 @@ public class GameProvider {
             numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 0, 4);
             numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?", 0,
                     4 - numberOfHumanPlayers);
-            enoughPlayers = numberOfComputerPlayers + numberOfComputerPlayers >= 2;
+            enoughPlayers = numberOfHumanPlayers + numberOfComputerPlayers >= 2;
             if (!enoughPlayers){
-                ui.getIo().gatherInput("Not enough players to start game!");
+                ui.getIo().gatherEmptyInput("Not enough players to start game!");
             }
         }
         Game game = new Game(deck, numberOfHumanPlayers, numberOfComputerPlayers, ui);
@@ -75,14 +75,14 @@ public class GameProvider {
 
     public void createHumanPlayers(Game game) {
         for (int i = 0; i < numberOfHumanPlayers; i++) {
-            Player player = new HumanPlayer(io);
+            Player player = new HumanPlayer(ui);
             game.getPlayers()[i] = player;
         }
     }
 
     public void createComputerPlayers(Game game) {
         for (int i = numberOfHumanPlayers; i < numberOfHumanPlayers + numberOfComputerPlayers; i++) {
-            Player player = new ComputerPlayer();
+            Player player = new ComputerPlayer(ui);
             game.getPlayers()[i] = player;
         }
     }

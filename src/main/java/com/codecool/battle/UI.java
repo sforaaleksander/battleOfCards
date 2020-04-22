@@ -87,7 +87,7 @@ public class UI {
             printOnTable(imagePoint, player.getHand().getTopCard().getImage());
         }
         printOnTable(middle, "draw cards: " + cardsOnTable.getCards().size());
-        io.scan.nextLine();
+        io.gatherEmptyInput("Press enter to continue.");
     }
 
     private Point getImagePoint(Point origin) {

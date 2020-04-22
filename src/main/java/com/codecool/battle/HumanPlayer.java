@@ -1,20 +1,20 @@
 package com.codecool.battle;
 
 public class HumanPlayer extends Player {
-    private IO io;
+    private UI ui;
 
-    public HumanPlayer(IO io){
+    public HumanPlayer(UI ui){
         super();
-        this.io = io;
+        this.ui = ui;
     }
 
-    public IO getIo() {
-        return io;
+    public UI getUi() {
+        return ui;
     }
 
     @Override
     public String chooseAttribute() {
-        int userInput = io.gatherIntInput("Enter the attribute number you choose", 1, 4);
+        int userInput = ui.getIo().gatherIntInput("Enter the attribute number you choose", 1, 4);
         
         for (CardAttribute attribute : CardAttribute.values()) {
             if (userInput == attribute.getValue()) {
