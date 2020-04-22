@@ -3,7 +3,7 @@ package com.codecool.battle;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Card {
+public class Card implements Comparable<Card> {
     private String name;
     private Map<String, Integer> attributes;
     private String[] image;
@@ -39,5 +39,10 @@ public class Card {
 
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        return 0;
     }
 }
