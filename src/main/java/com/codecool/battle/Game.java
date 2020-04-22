@@ -4,41 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private List<Player> players;
+    private Player[] players;
     private int currentPlayerInt;
     private Deck deck;
     private CardsOnTable cardsOnTable;
-    private int numberOfHumanPlayers;
-    private int numberOfComputerPlayers;
     private IO io;
 
-    public Game(int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
-        this.players = new ArrayList<>();
-        this.numberOfHumanPlayers = numberOfHumanPlayers;
-        this.numberOfComputerPlayers = numberOfComputerPlayers;
+    public Game(Deck deck, int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
+        this.players = new Player[numberOfHumanPlayers + numberOfComputerPlayers];
         this.io = io;
-        createHumanPlayers();
-        createComputerPlayers();
-        setPlayersNames(io);
+        this.deck = deck;
+        this.currentPlayerInt = 0;
     }
 
     public IO getIo() {
         return io;
     }
 
-    public List<Player> getPlayers() {
+    public Player[] getPlayers() {
         return players;
     }
 
     public void changeToNextPlayer(){
         currentPlayerInt += 1;
-        if (currentPlayerInt == players.size()){
+        if (currentPlayerInt == players.length){
             currentPlayerInt = 0;
         }
     }
 
     public Player getCurrentPlayer() {
-        return players.get(currentPlayerInt);
+        return players[currentPlayerInt];
     }
 
     public Deck getDeck() {
@@ -49,27 +44,52 @@ public class Game {
         return cardsOnTable;
     }
 
-    public void createHumanPlayers() {
-        for (int i = 0; i < numberOfHumanPlayers; i++) {
-            Player player = new HumanPlayer(io);
-            players.add(player);
+    private boolean isGameOver(){
+        for (Player player: players) {
+            if (player.getHand().getCards().isEmpty()) {
+                return true;
+            }
         }
+        return false;
     }
 
-    public void createComputerPlayers() {
-        for (int i = 0; i < numberOfComputerPlayers; i++) {
-            Player player = new ComputerPlayer();
-            players.add(player);
+    private void gamePlay(){
+        while (!isGameOver()){
+            
         }
     }
+    
+    
+    public boolean checkIfIsRoundWinner(String attribute) {
+        List<Integer> highestValues = new ArrayList<>();
+        highestValues.add(players[0].getHand().getTopCard().getValueByType(attribute));
 
-    public void setPlayersNames(IO io) {
-        int count = 1;
         for (Player player : players) {
-            String humanOrComputer = player instanceof HumanPlayer ? "player " : "computer ";
-            player.setName(io.gatherInput("Type in the name for " + humanOrComputer + count + "."));
-            count++;
+            if (player.getHand().getTopCard().getValueByType(attribute) > highestValues.get(0)) {
+                highestValues.removeAll(highestValues);
+                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            }
+            if (player.getHand().getTopCard().getValueByType(attribute) == highestValues.get(0)) {
+                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            }
         }
+        if (highestValues.size() == 1) {
+            return true;
+        }
+        return false;
     }
 
+
+    public Player returnRoundWinner(String attribute) {
+        Player playerWithHighestValue = players[0];
+        int higestValue = players[0].getHand().getTopCard().getValueByType(attribute);
+
+        for (Player player : players) {
+            if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
+                playerWithHighestValue = player;
+                higestValue = player.getHand().getTopCard().getValueByType(attribute);
+            }
+        }
+        return playerWithHighestValue;
+    }
 }
