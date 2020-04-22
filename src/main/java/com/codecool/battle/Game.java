@@ -8,17 +8,17 @@ public class Game {
     private int currentPlayerInt;
     private Deck deck;
     private CardsOnTable cardsOnTable;
-    private IO io;
+    private UI ui;
 
-    public Game(Deck deck, int numberOfHumanPlayers, int numberOfComputerPlayers, IO io) {
+    public Game(Deck deck, int numberOfHumanPlayers, int numberOfComputerPlayers, UI ui) {
         this.players = new Player[numberOfHumanPlayers + numberOfComputerPlayers];
-        this.io = io;
+        this.ui = ui;
         this.deck = deck;
         this.currentPlayerInt = 0;
     }
 
-    public IO getIo() {
-        return io;
+    public UI getUi() {
+        return ui;
     }
 
     public Player[] getPlayers() {

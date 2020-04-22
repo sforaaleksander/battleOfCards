@@ -4,19 +4,12 @@ import java.util.Scanner;
 
 public class IO {
     public Scanner scan;
-    private UI ui;
 
-    IO(UI ui){
+
+    IO(){
         scan = new Scanner(System.in);
         scan.useDelimiter(System.lineSeparator());
-        this.ui = ui;
     }
-
-    
-    public UI getUi() {
-        return ui;
-    }
-
 
     public String gatherInput(String title) {
         System.out.println(title);

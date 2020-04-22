@@ -1,12 +1,21 @@
 package com.codecool.battle;
 
 public class UI {
-    Game game;
     private final int TABLE_WIDTH = 150;
     private final int TABLE_HEIGTH = 40;
 
     private final int startY = 2;
     private final int startX = 2;
+
+    private IO io;
+
+    UI(IO io){
+        this.io = io;
+    }
+
+    public IO getIo() {
+        return io;
+    }
 
     public void displayMenu() {
         printTable();
@@ -42,9 +51,6 @@ public class UI {
         return str.split("\n");
     }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
 
     public void displayPlayerTopCard(Player player) {
         clearScreen();

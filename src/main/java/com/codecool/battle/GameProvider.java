@@ -28,8 +28,8 @@ public class GameProvider {
         String currentDirectory = System.getProperty("user.dir");
         CardParser cardParser = new CardParser(currentDirectory + "/src/main/resources/dinosaurs.xml");
         deck = new Deck(cardParser.getCardRepository());
-        ui = new UI();
-        io = new IO(ui);
+        io = new IO();
+        ui = new UI(io);        
         createMenuMap();
         isRunning = true;
     }
@@ -46,7 +46,7 @@ public class GameProvider {
         numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 4);
         numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?",
                 4 - numberOfHumanPlayers);
-        Game game = new Game(deck, numberOfHumanPlayers, numberOfComputerPlayers, io);
+        Game game = new Game(deck, numberOfHumanPlayers, numberOfComputerPlayers, ui);
         createHumanPlayers(game);
         createComputerPlayers(game);
         setPlayersNames(game);
