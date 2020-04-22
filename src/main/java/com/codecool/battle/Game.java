@@ -1,5 +1,7 @@
 package com.codecool.battle;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private Player[] players;
@@ -40,5 +42,38 @@ public class Game {
     public CardsOnTable getCardsOnTable() {
         return cardsOnTable;
     }
+    
+    
+    public boolean checkIfIsRoundWinner(String attribute) {
+        List<Integer> highestValues = new ArrayList<>();
+        highestValues.add(players[0].getHand().getTopCard().getValueByType(attribute));
 
+        for (Player player : players) {
+            if (player.getHand().getTopCard().getValueByType(attribute) > highestValues.get(0)) {
+                highestValues.removeAll(highestValues);
+                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            }
+            if (player.getHand().getTopCard().getValueByType(attribute) == highestValues.get(0)) {
+                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            }
+        }
+        if (highestValues.size() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public Player returnRoundWinner(String attribute) {
+        Player playerWithHighestValue = players[0];
+        int higestValue = players[0].getHand().getTopCard().getValueByType(attribute);
+
+        for (Player player : players) {
+            if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
+                playerWithHighestValue = player;
+                higestValue = player.getHand().getTopCard().getValueByType(attribute);
+            }
+        }
+        return playerWithHighestValue;
+    }
 }

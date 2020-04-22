@@ -44,5 +44,13 @@ public class Card implements Comparable<Card> {
     @Override
     public int compareTo(Card o) {
         return 0;
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + "\n");
+        for (String key : attributes.keySet()) {
+            sb.append(key + ": " + attributes.get(key) + "\n");
+        }
+        return sb.toString();
     }
 }
