@@ -14,6 +14,7 @@ public class Game {
         this.players = new Player[numberOfHumanPlayers + numberOfComputerPlayers];
         this.ui = ui;
         this.deck = deck;
+        this.cardsOnTable = new CardsOnTable();
         this.currentPlayerInt = 0;
     }
 
@@ -57,20 +58,21 @@ public class Game {
         while (!isGameOver()) {
             System.out.println("INSIDE OF GAME LOOP");
             boolean draw = true;
-            String chosenAttribute = "";
+            String userAttribute = "";
             do {
                 Player currentPlayer = players[currentPlayerInt];
                 ui.displayPlayerTopCard(currentPlayer);
-                chosenAttribute = currentPlayer.chooseAttribute();
-                ui.displayTable(players, cardsOnTable);
-                draw = checkIfRoundDraw(chosenAttribute);
+
+                userAttribute = currentPlayer.chooseAttribute();
+                ui.displayTable(players, cardsOnTable);                
+                draw = checkIfRoundDraw(userAttribute);
                 cardsOnTable.collectPlayersTopCards(players);
                 if (isGameOver()){
                     endGame();
                 }
             } while (draw);
 
-            Player roundWinner = returnRoundWinner(chosenAttribute);
+            Player roundWinner = returnRoundWinner(userAttribute);
 
             roundWinner.getHand().addHandCards(cardsOnTable);
             cardsOnTable.clearTable();

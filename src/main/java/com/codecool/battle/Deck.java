@@ -41,9 +41,10 @@ public class Deck {
 
     public void distributeCards(Player[] players) {
         int cardsPerPlayer = cards.size() / players.length;
-        int playerNo = 0;
-        for (int i = 0; i < cardsPerPlayer; i++) {
-            players[playerNo].getHand().addCard(cards.pop());
+        for (Player player : players) {
+            for (int i = 0; i < cardsPerPlayer; i++) {
+                player.getHand().addCard(cards.pop());
+            }
         }
 
     }

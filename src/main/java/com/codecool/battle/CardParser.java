@@ -38,7 +38,7 @@ public class CardParser {
         String currentDirectory = System.getProperty("user.dir");
         try {
             
-            String fileName = currentDirectory + "/src/main/resources/images/" + dinoName + ".txt";
+            String fileName = currentDirectory + "/src/main/resources/images/" + dinoName.toLowerCase() + ".txt";
             Path path = Paths.get(fileName);
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -85,7 +85,7 @@ public class CardParser {
             }
 
             Element element = (Element) node;
-            String name = element.getAttribute("name");
+            String name = element.getAttribute("name").toUpperCase();
             Card card = new Card(name);
             setAttributeValues(card, element);
 
@@ -102,7 +102,7 @@ public class CardParser {
 
         for (int i = 0; i < attributeList.getLength(); i++) {
             Element attr = (Element) attributeList.item(i);
-            String type = attr.getAttribute("type");
+            String type = attr.getAttribute("type").toUpperCase();
             int value = Integer.valueOf(attr.getTextContent());
 
             card.setAttributeByType(type, value);
