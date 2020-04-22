@@ -28,7 +28,7 @@ public class IO {
         return userInput;
     }
 
-    public int gatherIntInput(String title, int range) {
+    public int gatherIntInput(String title, int rangeMin, int rangeMax) {
         System.out.println(title);
         String userInput;
         int userInt = 1;
@@ -38,7 +38,7 @@ public class IO {
             if (!userInput.equals("")) {
                 if (userInput.matches("^[0-9]*$")) {
                     userInt = Integer.parseInt(userInput);
-                    if (userInt > 0 && userInt <= range) {
+                    if (userInt >= rangeMin && userInt <= rangeMax) {
                         validInput = true;
                     }
                 }

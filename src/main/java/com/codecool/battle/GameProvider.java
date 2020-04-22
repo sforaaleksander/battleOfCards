@@ -16,6 +16,7 @@ public class GameProvider {
         initialize();
         handleMenu();
     }
+
     private void createMenuMap() {
         mainMenuMap = new HashMap<>();
         mainMenuMap.put("1", () -> gameSetup());
@@ -29,7 +30,7 @@ public class GameProvider {
         CardParser cardParser = new CardParser(currentDirectory + "/src/main/resources/dinosaurs.xml");
         deck = new Deck(cardParser.getCardRepository());
         io = new IO();
-        ui = new UI(io);        
+        ui = new UI(io);
         createMenuMap();
         isRunning = true;
     }
@@ -43,16 +44,23 @@ public class GameProvider {
     }
 
     public void gameSetup() {
-        numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 4);
-        numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?",
-                4 - numberOfHumanPlayers);
+        boolean enoughPlayers = false;
+        while (!enoughPlayers) {
+            numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 0, 4);
+            numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?", 0,
+                    4 - numberOfHumanPlayers);
+            enoughPlayers = numberOfComputerPlayers + numberOfComputerPlayers >= 2;
+            if (!enoughPlayers){
+                ui.getIo().gatherInput("Not enough players to start game!");
+            }
+        }
         Game game = new Game(deck, numberOfHumanPlayers, numberOfComputerPlayers, ui);
         createHumanPlayers(game);
         createComputerPlayers(game);
         setPlayersNames(game);
         game.getDeck().distributeCards(game.getPlayers());
         System.out.println("CARDS DISTRIBUTED LETS PLAY");
-        game.gamePlay();        
+        game.gamePlay();
     }
 
     public void howTo() {
@@ -64,7 +72,6 @@ public class GameProvider {
     public void exitGame() {
         isRunning = false;
     }
-
 
     public void createHumanPlayers(Game game) {
         for (int i = 0; i < numberOfHumanPlayers; i++) {
