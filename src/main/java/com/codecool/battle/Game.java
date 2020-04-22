@@ -42,6 +42,21 @@ public class Game {
     public CardsOnTable getCardsOnTable() {
         return cardsOnTable;
     }
+
+    private boolean isGameOver(){
+        for (Player player: players) {
+            if (player.getHand().getCards().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void gamePlay(){
+        while (!isGameOver()){
+            
+        }
+    }
     
     
     public boolean checkIfIsRoundWinner(String attribute) {
