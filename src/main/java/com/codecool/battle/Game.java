@@ -86,8 +86,32 @@ public class Game {
     }
 
     private void endGame() {
-        //TODO
         System.out.println("GAME OVER");
+        List<Player> winnerList = new ArrayList<>();
+        winnerList.add(players[0]);
+        for (Player player : players) {
+            if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
+                winnerList.removeAll(winnerList);
+                winnerList.add(player);
+            } else if (player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+                winnerList.add(player);
+            }
+        }
+        String finalResult = "";
+        if (winnerList.size() == 1) {
+            finalResult += "The winner is " + winnerList.get(0).getName();
+        } else {
+            int index = 0;
+            finalResult += "Draw! The winners are ";
+            for (Player player : winnerList) {
+                finalResult += player.getName();
+                index++;
+                if (index < winnerList.size()) {
+                    finalResult += " & ";
+                }
+            }
+        }
+        System.out.println(finalResult);
     }
 
     public boolean checkIfRoundDraw(String attribute) {
