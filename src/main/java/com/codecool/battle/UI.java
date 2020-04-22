@@ -1,11 +1,11 @@
 package com.codecool.battle;
 
 public class UI {
-    private final int TABLE_WIDTH = 150;
+    private final int TABLE_WIDTH = 170;
     private final int TABLE_HEIGTH = 40;
 
-    private final int startY = 2;
-    private final int startX = 2;
+    private final int startY = 3;
+    private final int startX = 3;
 
     private IO io;
 
@@ -18,21 +18,33 @@ public class UI {
     }
 
     public void displayMenu() {
-        printTable();
+        printBorders();
 
-        printOnTable(startY, startX, new String[]{"(1) Start new game",
-                                                  "(2) How to play",
-                                                  "(3) About autors",
-                                                  "(0) Exit"});
+        printOnTable(startY, startX, new String[] { "(1) Start new game",
+                                                    "(2) How to play",
+                                                    "(3) About autors",
+                                                    "(0) Exit" });
     }
 
-    private void printTable() {
-        // clearScreen();
+    private void printBorders() {
+        clearScreen();
         System.out.println("▊".repeat(TABLE_WIDTH));
         for (int i = 0; i < TABLE_HEIGTH; i++) {
             System.out.println("▊" + " ".repeat(TABLE_WIDTH - 2) + "▊");
         }
         System.out.println("▊".repeat(TABLE_WIDTH));
+    }
+
+    public void printOnTable(Point point, String toPrint) {
+        printOnTable(point.y, point.x, stringToArray(toPrint));
+    }
+
+    public void printOnTable(Point point, String[] toPrint) {
+        printOnTable(point.y, point.x, toPrint);
+    }
+
+    public void printOnTable(int y, int x, String toPrint) {
+        printOnTable(y, x, stringToArray(toPrint));
     }
 
     public void printOnTable(int y, int x, String[] toPrint) {
@@ -41,10 +53,6 @@ public class UI {
             System.out.print(string);
             setCursorPosition(++y, x);
         }
-    }
-
-    public void printOnTable(int y, int x, String toPrint) {
-        printOnTable(y, x, stringToArray(toPrint));
     }
 
     private String[] stringToArray(String str) {
@@ -56,18 +64,34 @@ public class UI {
     }
 
     public void displayPlayerTopCard(int y, int x, Player player) {
-        // clearScreen();
+        clearScreen();
         printOnTable(y, x, "PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
         printOnTable(++y, x, player.getHand().getTopCard().toString());
-        // printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
+        printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
+        final Point player1Origin = new Point(2, 2);
+        final Point player2Origin = new Point(2, TABLE_WIDTH / 2);
+        final Point player3Origin = new Point(TABLE_HEIGTH / 2, 2);
+        final Point player4Origin = new Point(TABLE_HEIGTH / 2, TABLE_WIDTH / 2);
+        final Point middle = new Point(TABLE_HEIGTH / 2 - 2, TABLE_WIDTH / 2 - 5);
+        Point[] origins = {player1Origin, player2Origin, player3Origin, player4Origin};
+        int currentPlayer = 0;
+        printBorders();
         for (Player player : players) {
-            System.out.println("PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
-            System.out.println("Top card " + player.getHand().getTopCard().toString());
-            System.out.println(cardsOnTable.getCards().size() + " cards on table");
+            String playerString = "PLAYER " + player.getName() + " cards: " + player.getHand().getCards().size() + "\nTop card " + player.getHand().getTopCard().toString();
+            Point imagePoint = getImagePoint(origins[currentPlayer]);
+
+            printOnTable(origins[currentPlayer++], playerString);
+            printOnTable(imagePoint, player.getHand().getTopCard().getImage());
         }
+        printOnTable(middle, "draw cards: " + cardsOnTable.getCards().size());
+        io.scan.nextLine();
+    }
+
+    private Point getImagePoint(Point origin) {
+        return new Point(origin.y, origin.x + 20);
     }
 
     public void clearScreen() {
@@ -75,7 +99,7 @@ public class UI {
     }
 
     public void setCursorPosition(int y, int x) {
-        // System.out.print("\033[" + y + ";" + x + "H");
+        System.out.print("\033[" + y + ";" + x + "H");
     }
 
     private void moveCursorDown(int n) {
