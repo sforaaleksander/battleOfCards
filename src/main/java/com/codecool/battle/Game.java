@@ -64,14 +64,17 @@ public class Game {
                 ui.displayPlayerTopCard(currentPlayer);
 
                 userAttribute = currentPlayer.chooseAttribute();
-                ui.displayTable(players, cardsOnTable);                
+                ui.displayTable(players, cardsOnTable);
                 draw = checkIfRoundDraw(userAttribute);
                 cardsOnTable.collectPlayersTopCards(players);
                 if (isGameOver()){
-                    endGame();
+                    break;
                 }
             } while (draw);
-
+            if (isGameOver()){
+                endGame();
+                break;
+            }
             Player roundWinner = returnRoundWinner(userAttribute);
 
             roundWinner.getHand().addHandCards(cardsOnTable);
