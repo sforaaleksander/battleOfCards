@@ -1,7 +1,7 @@
 package com.codecool.battle;
 
 public enum CardAttribute {
-    WEIGHT(1), ROARVOLUME(2), MAXSPEED(3), NUMBEROFTEETH(4);
+    NUMBEROFTEETH(1), ROARVOLUME(2), MAXSPEED(3), WEIGHT(4);
 
     private final int value;
 
