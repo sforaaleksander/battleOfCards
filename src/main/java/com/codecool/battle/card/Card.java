@@ -48,7 +48,6 @@ public class Card implements Comparable<Card> {
     }
 
     protected Object clone() throws CloneNotSupportedException {
-        super.clone();
         return new Card(this.getName(), this.getAttributes(), this.getImage());
     }
 
