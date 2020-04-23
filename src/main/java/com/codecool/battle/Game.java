@@ -63,10 +63,11 @@ public class Game {
                 ui.displayPlayerTopCard(currentPlayer);
                 userAttribute = currentPlayer.chooseAttribute();
                 draw = checkIfRoundDraw(userAttribute);
+                ui.displayTable(players, cardsOnTable);
                 if (draw) {
                     cardsOnTable.collectPlayersTopCards(players);
+                    ui.displayTable(players, cardsOnTable);
                 }
-                ui.displayTable(players, cardsOnTable);
             } while (draw && !isGameOver());
             if (isGameOver()) {
                 endGame();
