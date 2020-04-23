@@ -66,7 +66,6 @@ public class Game {
                 ui.displayTable(players, cardsOnTable);
                 if (draw) {
                     cardsOnTable.collectPlayersTopCards(players);
-                    ui.displayTable(players, cardsOnTable);
                 }
             } while (draw && !isGameOver());
             if (isGameOver()) {
