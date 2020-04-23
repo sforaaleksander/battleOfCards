@@ -1,5 +1,7 @@
 package com.codecool.battle;
 
+import com.github.tomaslanger.chalk.Chalk;
+
 public abstract class Player {
     private String name;
     private Hand hand;
@@ -20,8 +22,8 @@ public abstract class Player {
         return null;
     }
     
-    public String getName() {
-        return name;
+    public Chalk getName() {
+        return Chalk.on(name).green();
     }
 
     public Hand getHand() {
