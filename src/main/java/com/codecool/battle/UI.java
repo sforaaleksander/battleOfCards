@@ -3,9 +3,9 @@ package com.codecool.battle;
 public class UI {
     private final int TABLE_WIDTH = 170;
     private final int TABLE_HEIGTH = 40;
-
-    private final int startY = 3;
-    private final int startX = 3;
+    private Point cursorPosition = new Point(1, 1);
+    private final int marginY = 3;
+    private final int marginX = 3;
 
     private IO io;
 
@@ -20,10 +20,10 @@ public class UI {
     public void displayMenu() {
         printBorders();
 
-        printOnTable(startY, startX, new String[] { "(1) Start new game",
-                                                    "(2) How to play",
-                                                    "(3) About autors",
-                                                    "(0) Exit" });
+        printOnTable(marginY, marginX, new String[] { "(1) Start new game",
+                                                      "(2) How to play",
+                                                      "(3) About autors",
+                                                      "(0) Exit" });
     }
 
     private void printBorders() {
@@ -60,7 +60,7 @@ public class UI {
     }
 
     public void displayPlayerTopCard(Player player) {
-        displayPlayerTopCard(startY, startX, player);
+        displayPlayerTopCard(marginY, marginX, player);
     }
 
     public void displayPlayerTopCard(int y, int x, Player player) {
@@ -71,16 +71,17 @@ public class UI {
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
-        final Point player1Origin = new Point(2, 2);
-        final Point player2Origin = new Point(2, TABLE_WIDTH / 2);
-        final Point player3Origin = new Point(TABLE_HEIGTH / 2, 2);
+        final Point player1Origin = new Point(marginY, marginX);
+        final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
+        final Point player3Origin = new Point(TABLE_HEIGTH / 2, marginX);
         final Point player4Origin = new Point(TABLE_HEIGTH / 2, TABLE_WIDTH / 2);
         final Point middle = new Point(TABLE_HEIGTH / 2 - 2, TABLE_WIDTH / 2 - 5);
-        Point[] origins = {player1Origin, player2Origin, player3Origin, player4Origin};
+        Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
         int currentPlayer = 0;
         printBorders();
         for (Player player : players) {
-            String playerString = "PLAYER " + player.getName() + " cards: " + player.getHand().getCards().size() + "\nTop card " + player.getHand().getTopCard().toString();
+            String playerString = "PLAYER " + player.getName() + " cards: " + player.getHand().getCards().size()
+                    + "\nTop card " + player.getHand().getTopCard().toString();
             Point imagePoint = getImagePoint(origins[currentPlayer]);
 
             printOnTable(origins[currentPlayer++], playerString);
@@ -100,9 +101,5 @@ public class UI {
 
     public void setCursorPosition(int y, int x) {
         System.out.print("\033[" + y + ";" + x + "H");
-    }
-
-    private void moveCursorDown(int n) {
-        System.out.print("\033[" + n + "B");
     }
 }
