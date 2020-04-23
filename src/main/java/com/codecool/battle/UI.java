@@ -18,7 +18,7 @@ public class UI {
     }
 
     public void displayMenu() {
-        printBorders();
+        printBorders(TABLE_WIDTH, TABLE_HEIGTH);
 
         printOnTable(marginY, marginX, new String[] { "(1) Start new game",
                                                       "(2) How to play",
@@ -26,21 +26,21 @@ public class UI {
                                                       "(0) Exit" });
     }
 
-    private void printBorders() {
+    private void printBorders(int width, int heigth) {
         clearScreen();
-        System.out.println("▊".repeat(TABLE_WIDTH));
-        for (int i = 0; i < TABLE_HEIGTH; i++) {
-            System.out.println("▊" + " ".repeat(TABLE_WIDTH - 2) + "▊");
+        System.out.println("▊".repeat(width));
+        for (int i = 0; i < heigth; i++) {
+            System.out.println("▊" + " ".repeat(width - 2) + "▊");
         }
-        System.out.println("▊".repeat(TABLE_WIDTH));
+        System.out.println("▊".repeat(width));
     }
 
     public void printOnTable(Point point, String toPrint) {
-        printOnTable(point.y, point.x, stringToArray(toPrint));
+        printOnTable(point.getY(), point.getX(), stringToArray(toPrint));
     }
 
     public void printOnTable(Point point, String[] toPrint) {
-        printOnTable(point.y, point.x, toPrint);
+        printOnTable(point.getY(), point.getX(), toPrint);
     }
 
     public void printOnTable(int y, int x, String toPrint) {
@@ -70,7 +70,7 @@ public class UI {
         printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
     }
 
-    public void displayTable(Player[] players, CardsOnTable cardsOnTable, String winner) {
+    private void displayTable(Player[] players, CardsOnTable cardsOnTable, String winner) {
         final Point player1Origin = new Point(marginY, marginX);
         final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
         final Point player3Origin = new Point(TABLE_HEIGTH / 2 + 4, marginX);
@@ -78,7 +78,7 @@ public class UI {
         final Point middle = new Point(TABLE_HEIGTH / 2, TABLE_WIDTH / 2);
         Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
         int currentPlayer = 0;
-        printBorders();
+        printBorders(TABLE_WIDTH, TABLE_HEIGTH);
         for (Player player : players) {
             String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
                     + "\nTop card:\n" + player.getHand().getTopCard().toString();
@@ -88,11 +88,11 @@ public class UI {
             printOnTable(imagePoint, player.getHand().getTopCard().getImage());
         }
         String cardsOnTableString = "▊".repeat(cardsOnTable.getCards().size());
-        printOnTable(middle.y, middle.x - cardsOnTableString.length() / 2, cardsOnTableString);
+        printOnTable(middle.getY(), middle.getX() - cardsOnTableString.length() / 2, cardsOnTableString);
         io.gatherEmptyInput(winner + "\nPress enter to continue.");
     }
 
-    public void displayTable(Player[] players, CardsOnTable cardsOnTable, boolean draw) {
+    public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
         displayTable(players, cardsOnTable, "Draw!");
     }
 
@@ -101,14 +101,18 @@ public class UI {
     }
 
     private Point getImagePoint(Point origin) {
-        return new Point(origin.y, origin.x + 20);
+        return new Point(origin.getY(), origin.getX() + 20);
     }
 
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
+        cursorPosition.setY(1);
+        cursorPosition.setX(1);
     }
 
     public void setCursorPosition(int y, int x) {
         System.out.print("\033[" + y + ";" + x + "H");
+        cursorPosition.setY(y);
+        cursorPosition.setX(x);
     }
 }
