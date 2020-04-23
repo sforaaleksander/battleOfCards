@@ -25,7 +25,7 @@ public class ComputerPlayer extends Player {
                 ui.printOnTable("chosen attribute: " + attribute);
             }
         }
-        ui.getIo().gatherEmptyInput();
+        ui.gatherEmptyInput("Press enter to continue.");
         return attribute;
     }
 }
