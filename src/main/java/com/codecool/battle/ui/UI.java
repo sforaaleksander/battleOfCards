@@ -1,5 +1,7 @@
 package com.codecool.battle.ui;
 
+import java.util.Random;
+
 import com.codecool.battle.card.CardsOnTable;
 import com.codecool.battle.player.Player;
 
@@ -11,13 +13,19 @@ public class UI {
     private final int marginX = 3;
 
     private IO io;
+    private Random generator;
 
     public UI(IO io) {
         this.io = io;
+        this.generator = new Random();
     }
 
     public IO getIo() {
         return io;
+    }
+
+    public Random getGenerator() {
+        return generator;
     }
 
     public void displayMenu() {
