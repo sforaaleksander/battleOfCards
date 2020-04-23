@@ -2,6 +2,7 @@ package com.codecool.battle.player;
 
 import java.util.Map;
 
+import com.codecool.battle.card.CardAttribute;
 import com.codecool.battle.ui.UI;
 
 public class ComputerPlayer extends Player {
@@ -15,12 +16,11 @@ public class ComputerPlayer extends Player {
 
     }
 
-    private String getComputerSmartness(){
+    private String getComputerSmartness() {
         return ui.getGenerator().nextInt(2) == 0 ? "SMART" : "LUCKY";
     }
 
-    @Override
-    public String chooseAttribute() {
+    private String chooseSmart() {
         Map.Entry<String, Integer> first = this.getHand().getTopCard().getAttributes().entrySet().iterator().next();
         String attribute = first.getKey();
         int maxCardValue = first.getValue();
@@ -34,5 +34,18 @@ public class ComputerPlayer extends Player {
         }
         ui.gatherEmptyInput("Press enter to continue.");
         return attribute;
+    }
+
+    private String chooseLucky() {
+        int randomInt = ui.getGenerator().nextInt(4);
+        return CardAttribute.values()[randomInt].name();
+    }
+
+    @Override
+    public String chooseAttribute() {
+        if (smartOrLucky.equals("SMART")) {
+            return chooseSmart();
+        }
+        return chooseLucky();
     }
 }
