@@ -6,10 +6,17 @@ import com.codecool.battle.ui.UI;
 
 public class ComputerPlayer extends Player {
     private UI ui;
+    private String smartOrLucky;
 
     public ComputerPlayer(UI ui) {
         super();
         this.ui = ui;
+        this.smartOrLucky = getComputerSmartness();
+
+    }
+
+    private String getComputerSmartness(){
+        return ui.getGenerator().nextInt(2) == 0 ? "SMART" : "LUCKY";
     }
 
     @Override
