@@ -1,6 +1,9 @@
-package com.codecool.battle;
+package com.codecool.battle.player;
 
 import java.util.Stack;
+
+import com.codecool.battle.card.Card;
+import com.codecool.battle.card.CardsOnTable;
 
 public class Hand {
     private Stack<Card> cards;

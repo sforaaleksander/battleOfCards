@@ -1,4 +1,6 @@
-package com.codecool.battle;
+package com.codecool.battle.card;
+
+import com.codecool.battle.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +8,7 @@ import java.util.List;
 public class CardsOnTable {
     private List<Card> cards;
 
-    CardsOnTable(){
+    public CardsOnTable(){
         this.cards = new ArrayList<>();
     }
 

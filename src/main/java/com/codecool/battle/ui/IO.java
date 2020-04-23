@@ -1,11 +1,11 @@
-package com.codecool.battle;
+package com.codecool.battle.ui;
 
 import java.util.Scanner;
 
 public class IO {
     public Scanner scan;
 
-    IO() {
+    public IO() {
         scan = new Scanner(System.in);
         scan.useDelimiter(System.lineSeparator());
     }

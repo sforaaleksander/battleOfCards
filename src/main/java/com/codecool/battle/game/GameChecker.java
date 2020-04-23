@@ -1,10 +1,14 @@
-package com.codecool.battle;
+package com.codecool.battle.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import com.codecool.battle.card.Card;
+import com.codecool.battle.card.comparator.*;
+import com.codecool.battle.player.Player;
 
 public class GameChecker {
     private Player[] players;

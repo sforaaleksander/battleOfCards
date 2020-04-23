@@ -1,7 +1,12 @@
-package com.codecool.battle;
+package com.codecool.battle.game;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.codecool.battle.ui.UI;
+import com.codecool.battle.card.CardsOnTable;
+import com.codecool.battle.card.Deck;
+import com.codecool.battle.player.Player;
 
 public class Game {
     private Player[] players;

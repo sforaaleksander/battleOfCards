@@ -1,6 +1,9 @@
-package com.codecool.battle;
+package com.codecool.battle.card.comparator;
 
 import java.util.Comparator;
+
+import com.codecool.battle.card.Card;
+import com.codecool.battle.card.CardAttribute;
 
 public class CardRoarVolumeComparator implements Comparator<Card> {
 

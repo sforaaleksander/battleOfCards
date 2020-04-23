@@ -1,7 +1,16 @@
-package com.codecool.battle;
+package com.codecool.battle.game;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.codecool.battle.card.CardParser;
+import com.codecool.battle.card.Deck;
+import com.codecool.battle.player.ComputerPlayer;
+import com.codecool.battle.player.HumanPlayer;
+import com.codecool.battle.player.Player;
+import com.codecool.battle.ui.IO;
+import com.codecool.battle.ui.UI;
+
 
 public class GameProvider {
     private UI ui;
@@ -11,7 +20,7 @@ public class GameProvider {
     private int numberOfHumanPlayers;
     private int numberOfComputerPlayers;
 
-    GameProvider() {
+    public GameProvider() {
         initialize();
         handleMenu();
     }

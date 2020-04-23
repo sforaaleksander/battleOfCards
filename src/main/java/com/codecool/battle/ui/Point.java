@@ -1,4 +1,4 @@
-package com.codecool.battle;
+package com.codecool.battle.ui;
 
 import java.util.Objects;
 

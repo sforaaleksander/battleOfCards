@@ -1,4 +1,4 @@
-package com.codecool.battle;
+package com.codecool.battle.player;
 
 import com.github.tomaslanger.chalk.Chalk;
 

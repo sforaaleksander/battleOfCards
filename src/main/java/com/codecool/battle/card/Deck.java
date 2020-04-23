@@ -1,13 +1,15 @@
-package com.codecool.battle;
+package com.codecool.battle.card;
 
 import java.util.Collections;
 import java.util.Stack;
+
+import com.codecool.battle.player.Player;
 
 public class Deck {
     private Stack<Card> cards;
     private CardRepository cardRepository;
 
-    Deck(CardRepository cardRepository) {
+    public Deck(CardRepository cardRepository) {
         cards = new Stack<>();
         this.cardRepository = cardRepository;
         multipleRepoCards();

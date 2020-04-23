@@ -1,4 +1,7 @@
-package com.codecool.battle;
+package com.codecool.battle.player;
+
+import com.codecool.battle.card.CardAttribute;
+import com.codecool.battle.ui.UI;
 
 public class HumanPlayer extends Player {
     private UI ui;

@@ -1,4 +1,4 @@
-package com.codecool.battle;
+package com.codecool.battle.card;
 
 import java.io.BufferedReader;
 import java.io.File;

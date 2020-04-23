@@ -1,4 +1,7 @@
-package com.codecool.battle;
+package com.codecool.battle.ui;
+
+import com.codecool.battle.card.CardsOnTable;
+import com.codecool.battle.player.Player;
 
 public class UI {
     private final int TABLE_WIDTH = 170;
@@ -9,7 +12,7 @@ public class UI {
 
     private IO io;
 
-    UI(IO io) {
+    public UI(IO io) {
         this.io = io;
     }
 

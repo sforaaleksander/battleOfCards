@@ -1,6 +1,8 @@
-package com.codecool.battle;
+package com.codecool.battle.player;
 
 import java.util.Map;
+
+import com.codecool.battle.ui.UI;
 
 public class ComputerPlayer extends Player {
     private UI ui;
