@@ -6,11 +6,11 @@ public abstract class Player {
     private String name;
     private Hand hand;
 
-    public Player(){
+    public Player() {
         this.hand = new Hand();
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -21,9 +21,9 @@ public abstract class Player {
     public String chooseAttribute() {
         return null;
     }
-    
+
     public Chalk getName() {
-        return Chalk.on(name).green();
+        return Chalk.on(name).red();
     }
 
     public Hand getHand() {
