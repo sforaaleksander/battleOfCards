@@ -35,7 +35,6 @@ public class GameChecker {
         return false;
     }
 
-    // TODO create Comparators in gameChecker constructor
     public int findHighestValue(String attribute, List<Card> temporaryTopCards) {
         switch (attribute) {
             case ("MAXSPEED"):
@@ -79,5 +78,4 @@ public class GameChecker {
                 .max(Comparator.comparing(Player -> Player.getHand().getTopCard().getValueByType(attribute)))
                 .orElse(null);
     }
-
 }

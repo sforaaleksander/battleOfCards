@@ -31,7 +31,6 @@ public class CardParser {
         try {
             for (Card card : cardRepository.getCards()) {
                 card.setImage(readTxt(card.getName()));
-                System.out.println(card.getImage());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,7 +101,7 @@ public class CardParser {
         for (int i = 0; i < attributeList.getLength(); i++) {
             Element attr = (Element) attributeList.item(i);
             String type = attr.getAttribute("type").toUpperCase();
-            int value = Integer.valueOf(attr.getTextContent());
+            int value = Integer.parseInt(attr.getTextContent());
 
             card.setAttributeByType(type, value);
         }

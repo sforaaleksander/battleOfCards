@@ -6,7 +6,6 @@ import java.util.Stack;
 public class Deck {
     private Stack<Card> cards;
     private CardRepository cardRepository;
-    private final int DECKSIZE = 30;
 
     Deck(CardRepository cardRepository) {
         cards = new Stack<>();
@@ -14,14 +13,11 @@ public class Deck {
         multipleRepoCards();
     }
 
-    public Stack<Card> getCards() {
-        return cards;
-    }
-
     private void multipleRepoCards() {
         int index = 0;
         try {
-            while (cards.size() < DECKSIZE) {
+            int deckSize = 30;
+            while (cards.size() < deckSize) {
                 Card clonedCard = cloneCard(index);
                 cards.add(clonedCard);
                 index++;

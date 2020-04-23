@@ -14,10 +14,6 @@ public abstract class Player {
         this.name = name;
     }
 
-    public boolean hasCards() {
-        return this.getHand().getCards().isEmpty();
-    }
-
     public String chooseAttribute() {
         return null;
     }

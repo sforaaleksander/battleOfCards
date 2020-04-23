@@ -14,11 +14,7 @@ public class Point {
         this.x = x;
     }
 
-    public Point() {
-        y = 0;
-        x = 0;
-    }
-
+    //TODO
     public void moveDown() {
         y++;
     }
@@ -53,30 +49,18 @@ public class Point {
         return Objects.hash(y, x);
     }
 
-    /**
-     * @return the y
-     */
     public int getY() {
         return y;
     }
 
-    /**
-     * @return the x
-     */
     public int getX() {
         return x;
     }
 
-    /**
-     * @param y the y to set
-     */
     public void setY(int y) {
         this.y = y;
     }
 
-    /**
-     * @param x the x to set
-     */
     public void setX(int x) {
         this.x = x;
     }

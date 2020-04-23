@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class ComputerPlayer extends Player {
     private UI ui;
-    
+
     public ComputerPlayer(UI ui) {
         super();
         this.ui = ui;
@@ -20,10 +20,10 @@ public class ComputerPlayer extends Player {
             if (entry.getValue() > maxCardValue) {
                 maxCardValue = entry.getValue();
                 attribute = entry.getKey();
-                ui.printOnTable("chosen atribute: " + attribute);
+                ui.printOnTable("chosen attribute: " + attribute);
             }
         }
-        ui.getIo().gatherEmptyInput("Press enter to continue.");
+        ui.getIo().gatherEmptyInput();
         return attribute;
     }
 }

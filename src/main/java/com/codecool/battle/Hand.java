@@ -6,7 +6,7 @@ public class Hand {
     private Stack<Card> cards;
 
     public Hand() {
-        this.cards = new Stack<Card>();
+        this.cards = new Stack<>();
     }
 
     public Stack<Card> getCards() {
@@ -21,12 +21,6 @@ public class Hand {
         cards.addAll(newCards.getCards());
     }
 
-    public void moveTopCardToTable(CardsOnTable onTable) {
-        Card topCard = getTopCard();
-        onTable.addCard(topCard);
-        cards.remove(topCard);
-    }
-
     public Card getTopCard() {
         return cards.peek();
     }
@@ -34,5 +28,4 @@ public class Hand {
     public Card popTopCard() {
         return cards.pop();
     }
-
 }

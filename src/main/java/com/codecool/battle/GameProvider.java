@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameProvider {
-    private IO io;
     private UI ui;
     private Map<String, Runnable> mainMenuMap;
     private boolean isRunning;
@@ -19,17 +18,17 @@ public class GameProvider {
 
     private void createMenuMap() {
         mainMenuMap = new HashMap<>();
-        mainMenuMap.put("1", () -> gameSetup());
-        mainMenuMap.put("2", () -> howTo());
-        mainMenuMap.put("3", () -> about());
-        mainMenuMap.put("0", () -> exitGame());
+        mainMenuMap.put("1", this::gameSetup);
+        mainMenuMap.put("2", this::howTo);
+        mainMenuMap.put("3", this::about);
+        mainMenuMap.put("0", this::exitGame);
     }
 
     private void initialize() {
         String currentDirectory = System.getProperty("user.dir");
         CardParser cardParser = new CardParser(currentDirectory + "/src/main/resources/dinosaurs.xml");
         deck = new Deck(cardParser.getCardRepository());
-        io = new IO();
+        IO io = new IO();
         ui = new UI(io);
         createMenuMap();
         isRunning = true;
@@ -50,7 +49,7 @@ public class GameProvider {
             numberOfComputerPlayers = ui.gatherIntInput("How many computer players are there playing?", 0,
                     4 - numberOfHumanPlayers);
             enoughPlayers = numberOfHumanPlayers + numberOfComputerPlayers >= 2;
-            if (!enoughPlayers){
+            if (!enoughPlayers) {
                 ui.gatherEmptyInput("Not enough players to start game!");
             }
         }
@@ -62,10 +61,10 @@ public class GameProvider {
         game.gamePlay();
     }
 
-    public void howTo() {
+    public void howTo() {// TODO
     }
 
-    public void about() {
+    public void about() {// TODO
     }
 
     public void exitGame() {

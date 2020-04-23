@@ -20,9 +20,7 @@ public class Card implements Comparable<Card> {
             this.attributes.put(key, attributes.get(key));
         }
         this.image = new String[image.length];
-        for (int i=0; i<image.length; i++) {
-            this.image[i] = image[i];
-        }
+        System.arraycopy(image, 0, this.image, 0, image.length);
     }
 
     public void setAttributeByType(String type, Integer value) {
@@ -50,6 +48,7 @@ public class Card implements Comparable<Card> {
     }
 
     protected Object clone() throws CloneNotSupportedException {
+        super.clone();
         return new Card(this.getName(), this.getAttributes(), this.getImage());
     }
 
@@ -61,9 +60,9 @@ public class Card implements Comparable<Card> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name + "\n");
+        sb.append(name).append("\n");
         for (CardAttribute ca : CardAttribute.values()) {
-            sb.append(ca.name() + ": " + attributes.get(ca.name()) + "\n");
+            sb.append(ca.name()).append(": ").append(attributes.get(ca.name())).append("\n");
         }
         return sb.toString();
     }

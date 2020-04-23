@@ -20,10 +20,6 @@ public class Game {
         this.gameChecker = new GameChecker(players);
     }
 
-    public UI getUi() {
-        return ui;
-    }
-
     public Player[] getPlayers() {
         return players;
     }
@@ -35,22 +31,14 @@ public class Game {
         }
     }
 
-    public Player getCurrentPlayer() {
-        return players[currentPlayerInt];
-    }
-
     public Deck getDeck() {
         return deck;
-    }
-
-    public CardsOnTable getCardsOnTable() {
-        return cardsOnTable;
     }
 
     public void gamePlay() {
         while (!gameChecker.isGameOver()) {
             boolean draw;
-            String userAttribute = "";
+            String userAttribute;
             do {
                 Player currentPlayer = players[currentPlayerInt];
                 ui.displayPlayerTopCard(currentPlayer);
@@ -76,7 +64,7 @@ public class Game {
 
     private void endGame() {
         ui.clearScreen();
-        ui.getIo().gatherEmptyInput("GAME OVER!");
+        ui.getIo().gatherEmptyInput();
         List<Player> winnerList = new ArrayList<>();
         winnerList.add(players[0]);
         for (Player player : players) {
@@ -101,7 +89,7 @@ public class Game {
                 }
             }
         }
-        ui.getIo().gatherEmptyInput(finalResult.toString());
+        ui.gatherEmptyInput(finalResult.toString());
     }
 
     private boolean isPlayersHandSizeIsBigger(Player player, List<Player> winnerList) {

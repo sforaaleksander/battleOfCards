@@ -14,21 +14,13 @@ public class CardsOnTable {
         return cards;
     }
 
-    public void addCard(Card card){
-        cards.add(card);
-    }
-
-    public void addCards(List<Card> newCards){
-        cards.addAll(newCards);
-    }
-
     public void clearTable(){
         cards.clear();
     }
 
     public void collectPlayersTopCards(Player[] players) {
         for (Player player : players) { 
-            cards.add(player.getHand().getCards().pop());
+            cards.add(player.getHand().popTopCard());
         }
     }
 }
