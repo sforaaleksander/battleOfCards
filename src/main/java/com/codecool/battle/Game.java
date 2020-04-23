@@ -62,11 +62,11 @@ public class Game {
                 Player currentPlayer = players[currentPlayerInt];
                 ui.displayPlayerTopCard(currentPlayer);
                 userAttribute = currentPlayer.chooseAttribute();
-                ui.displayTable(players, cardsOnTable);
                 draw = checkIfRoundDraw(userAttribute);
                 if (draw) {
                     cardsOnTable.collectPlayersTopCards(players);
                 }
+                ui.displayTable(players, cardsOnTable);
             } while (draw && !isGameOver());
             if (isGameOver()) {
                 endGame();
@@ -89,7 +89,8 @@ public class Game {
             if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
                 winnerList.removeAll(winnerList);
                 winnerList.add(player);
-            } else if (player != players[0] && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+            } else if (player != players[0]
+                    && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
                 winnerList.add(player);
             }
         }
@@ -113,18 +114,19 @@ public class Game {
     public boolean checkIfRoundDraw(String attribute) {
         int highestValue = players[currentPlayerInt].getHand().getTopCard().getValueByType(attribute);
 
-        //TODO STREAMS???
+        // TODO STREAMS???
         for (Player player : players) {
             if (player.getHand().getTopCard().getValueByType(attribute) > highestValue) {
                 highestValue = player.getHand().getTopCard().getValueByType(attribute);
             }
         }
+        int highestValueCount = 0;
         for (Player player : players) {
-            if (player.getHand().getTopCard().getValueByType(attribute) == highestValue && players[currentPlayerInt] != player) {
-                return true;
+            if (player.getHand().getTopCard().getValueByType(attribute) == highestValue) {
+                highestValueCount++;
             }
         }
-        return false;
+        return highestValueCount > 1;
     }
 
     public Player returnRoundWinner(String attribute) {
