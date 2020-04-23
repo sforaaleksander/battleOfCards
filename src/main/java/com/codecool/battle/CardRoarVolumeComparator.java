@@ -2,7 +2,7 @@ package com.codecool.battle;
 
 import java.util.Comparator;
 
-public class RoarVolumeComparator implements Comparator<Card> {
+public class CardRoarVolumeComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card1, Card card2) {
