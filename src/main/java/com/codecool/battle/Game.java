@@ -61,38 +61,35 @@ public class Game {
             do {
                 Player currentPlayer = players[currentPlayerInt];
                 ui.displayPlayerTopCard(currentPlayer);
-
                 userAttribute = currentPlayer.chooseAttribute();
                 ui.displayTable(players, cardsOnTable);
                 draw = checkIfRoundDraw(userAttribute);
-                cardsOnTable.collectPlayersTopCards(players);
-                if (isGameOver()) {
-                    break;
+                if (draw) {
+                    cardsOnTable.collectPlayersTopCards(players);
                 }
-            } while (draw);
+            } while (draw && !isGameOver());
             if (isGameOver()) {
                 endGame();
                 break;
             }
             Player roundWinner = returnRoundWinner(userAttribute);
-
+            cardsOnTable.collectPlayersTopCards(players);
             roundWinner.getHand().addHandCards(cardsOnTable);
             cardsOnTable.clearTable();
-
             changeToNextPlayer();
 
         }
     }
 
     private void endGame() {
-        System.out.println("GAME OVER");
+        ui.getIo().gatherEmptyInput("GAME OVER!");
         List<Player> winnerList = new ArrayList<>();
         winnerList.add(players[0]);
         for (Player player : players) {
             if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
                 winnerList.removeAll(winnerList);
                 winnerList.add(player);
-            } else if (player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+            } else if (player != players[0] && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
                 winnerList.add(player);
             }
         }
@@ -110,25 +107,24 @@ public class Game {
                 }
             }
         }
-        System.out.println(finalResult);
+        ui.getIo().gatherEmptyInput(finalResult);
     }
 
     public boolean checkIfRoundDraw(String attribute) {
-        List<Integer> highestValues = new ArrayList<>();
-        highestValues.add(players[0].getHand().getTopCard().getValueByType(attribute));
+        int highestValue = players[currentPlayerInt].getHand().getTopCard().getValueByType(attribute);
 
+        //TODO STREAMS???
         for (Player player : players) {
-            if (player.getHand().getTopCard().getValueByType(attribute) > highestValues.get(0)) {
-                highestValues.removeAll(highestValues);
-                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
-            } else if (player.getHand().getTopCard().getValueByType(attribute) == highestValues.get(0)) {
-                highestValues.add(player.getHand().getTopCard().getValueByType(attribute));
+            if (player.getHand().getTopCard().getValueByType(attribute) > highestValue) {
+                highestValue = player.getHand().getTopCard().getValueByType(attribute);
             }
         }
-        if (highestValues.size() == 1) {
-            return false;
+        for (Player player : players) {
+            if (player.getHand().getTopCard().getValueByType(attribute) == highestValue && players[currentPlayerInt] != player) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public Player returnRoundWinner(String attribute) {

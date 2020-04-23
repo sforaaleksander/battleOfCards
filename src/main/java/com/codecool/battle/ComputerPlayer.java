@@ -3,9 +3,11 @@ package com.codecool.battle;
 import java.util.Map;
 
 public class ComputerPlayer extends Player {
+    private UI ui;
     
-    public ComputerPlayer() {
+    public ComputerPlayer(UI ui) {
         super();
+        this.ui = ui;
     }
 
     @Override
@@ -20,6 +22,7 @@ public class ComputerPlayer extends Player {
                 attribute = entry.getKey();
             }
         }
+        ui.getIo().gatherEmptyInput("Press enter to continue.");
         return attribute;
     }
 }
