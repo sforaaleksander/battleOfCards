@@ -4,11 +4,9 @@ import com.codecool.battle.card.CardAttribute;
 import com.codecool.battle.ui.UI;
 
 public class HumanPlayer extends Player {
-    private UI ui;
 
     public HumanPlayer(UI ui) {
-        super();
-        this.ui = ui;
+        super(ui);
     }
 
     @Override

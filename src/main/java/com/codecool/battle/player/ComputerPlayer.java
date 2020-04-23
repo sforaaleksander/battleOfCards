@@ -6,14 +6,11 @@ import com.codecool.battle.card.CardAttribute;
 import com.codecool.battle.ui.UI;
 
 public class ComputerPlayer extends Player {
-    private UI ui;
     private String smartOrLucky;
 
     public ComputerPlayer(UI ui) {
-        super();
-        this.ui = ui;
+        super(ui);
         this.smartOrLucky = getComputerSmartness();
-
     }
 
     private String getComputerSmartness() {
