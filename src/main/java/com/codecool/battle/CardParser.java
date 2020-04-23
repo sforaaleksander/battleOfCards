@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.NoSuchElementException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,34 +29,33 @@ public class CardParser {
     }
 
     private void loadCardImages() {
-        for (Card card : cardRepository.getCards()) {
-            card.setImage(readTxt(card.getName()));
-            System.out.println(card.getImage());
+        try {
+            for (Card card : cardRepository.getCards()) {
+                card.setImage(readTxt(card.getName()));
+                System.out.println(card.getImage());
+            }
+        } catch (IOException e) {
+            e.getMessage();
         }
     }
 
-    private String[] readTxt(String dinoName) {
+    private String[] readTxt(String dinoName) throws IOException {
         String currentDirectory = System.getProperty("user.dir");
-        try {
-            
-            String fileName = currentDirectory + "/src/main/resources/images/" + dinoName.toLowerCase() + ".txt";
-            Path path = Paths.get(fileName);
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            int lineCount = (int) Files.lines(path).count();
+        String fileName = currentDirectory + "/src/main/resources/images/" + dinoName.toLowerCase() + ".txt";
+        Path path = Paths.get(fileName);
+        FileReader fileReader = new FileReader(fileName);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        int lineCount = (int) Files.lines(path).count();
 
-            String[] lines = new String[lineCount];
-            String line;
-            int i = 0;
-            while ((line = bufferedReader.readLine()) != null) {
-                lines[i++] = line;
-            }
-            bufferedReader.close();
-            return lines;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        String[] lines = new String[lineCount];
+        String line;
+        int i = 0;
+        while ((line = bufferedReader.readLine()) != null) {
+            lines[i++] = line;
         }
+        bufferedReader.close();
+        return lines;
+
     }
 
     public CardRepository getCardRepository() {
