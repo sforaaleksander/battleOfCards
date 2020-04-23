@@ -20,24 +20,22 @@ public class Deck {
 
     private void multipleRepoCards() {
         int index = 0;
-        while (cards.size() < DECKSIZE) {
-            Card clonedCard = cloneCard(index);
-            cards.add(clonedCard);
-            index++;
-            if (index == cardRepository.getCards().size()) {
-                index = 0;
-            }
-        }
-    }
-
-    private Card cloneCard(int index) {
-        Card clonedCard = null;
         try {
-            clonedCard = (Card) cardRepository.getCards().get(index).clone();
+            while (cards.size() < DECKSIZE) {
+                Card clonedCard = cloneCard(index);
+                cards.add(clonedCard);
+                index++;
+                if (index == cardRepository.getCards().size()) {
+                    index = 0;
+                }
+            }
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        return clonedCard;
+    }
+
+    private Card cloneCard(int index) throws CloneNotSupportedException {
+        return (Card) cardRepository.getCards().get(index).clone();
     }
 
     public void distributeCards(Player[] players) {
