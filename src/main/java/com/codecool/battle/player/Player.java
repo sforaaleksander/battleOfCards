@@ -19,9 +19,7 @@ public abstract class Player {
         this.name = name;
     }
 
-    public String chooseAttribute() {
-        return null;
-    }
+    public abstract String chooseAttribute();
 
     public Chalk getName() {
         return Chalk.on(name).red();
