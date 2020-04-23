@@ -48,7 +48,7 @@ public class Game {
     }
 
     public void gamePlay() {
-        while (gameChecker.isGameOver()) {
+        while (!gameChecker.isGameOver()) {
             boolean draw;
             String userAttribute = "";
             do {
