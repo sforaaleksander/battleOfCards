@@ -14,7 +14,7 @@ public class HumanPlayer extends Player {
 
     @Override
     public String chooseAttribute() {
-        int userInput = ui.getIo().gatherIntInput("Enter the attribute number you choose", 1, 4);
+        int userInput = ui.gatherIntInput("Enter the attribute number you choose", 1, 4);
         
         for (CardAttribute attribute : CardAttribute.values()) {
             if (userInput == attribute.getValue()) {

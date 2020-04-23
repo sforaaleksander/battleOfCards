@@ -11,7 +11,6 @@ public class IO {
     }
 
     public String gatherInput(String title) {
-        System.out.println(title);
         boolean validInput = true;
         String userInput = "";
         do {
@@ -27,13 +26,11 @@ public class IO {
         return userInput;
     }
 
-    public String gatherEmptyInput(String title) {
-        System.out.println(title);
-        return scan.next().toUpperCase();
+    public void gatherEmptyInput(String title) {
+        scan.next();
     }
 
     public int gatherIntInput(String title, int rangeMin, int rangeMax) {
-        System.out.println(title);
         String userInput = "";
         boolean validInput = false;
         while (!validInput) {

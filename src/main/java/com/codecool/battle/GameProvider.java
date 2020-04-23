@@ -38,7 +38,7 @@ public class GameProvider {
     private void handleMenu() {
         while (isRunning) {
             ui.displayMenu();
-            String userChoice = io.gatherInput("");
+            String userChoice = ui.gatherInput("");
             mainMenuMap.get(userChoice).run();
         }
     }
@@ -46,12 +46,12 @@ public class GameProvider {
     public void gameSetup() {
         boolean enoughPlayers = false;
         while (!enoughPlayers) {
-            numberOfHumanPlayers = io.gatherIntInput("How many human players are there playing?", 0, 4);
-            numberOfComputerPlayers = io.gatherIntInput("How many computer players are there playing?", 0,
+            numberOfHumanPlayers = ui.gatherIntInput("How many human players are there playing?", 0, 4);
+            numberOfComputerPlayers = ui.gatherIntInput("How many computer players are there playing?", 0,
                     4 - numberOfHumanPlayers);
             enoughPlayers = numberOfHumanPlayers + numberOfComputerPlayers >= 2;
             if (!enoughPlayers){
-                ui.getIo().gatherEmptyInput("Not enough players to start game!");
+                ui.gatherEmptyInput("Not enough players to start game!");
             }
         }
         Game game = new Game(deck, numberOfHumanPlayers, numberOfComputerPlayers, ui);
@@ -59,7 +59,6 @@ public class GameProvider {
         createComputerPlayers(game);
         setPlayersNames(game);
         game.getDeck().distributeCards(game.getPlayers());
-        System.out.println("CARDS DISTRIBUTED LETS PLAY");
         game.gamePlay();
     }
 
@@ -91,7 +90,7 @@ public class GameProvider {
         int count = 1;
         for (Player player : game.getPlayers()) {
             String humanOrComputer = player instanceof HumanPlayer ? "player " : "computer ";
-            player.setName(io.gatherInput("Type in the name for " + humanOrComputer + count + "."));
+            player.setName(ui.gatherInput("Type in the name for " + humanOrComputer + count + "."));
             count++;
         }
     }
