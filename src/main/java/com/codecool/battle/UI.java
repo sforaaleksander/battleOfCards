@@ -70,7 +70,7 @@ public class UI {
         printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
     }
 
-    public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
+    public void displayTable(Player[] players, CardsOnTable cardsOnTable, String winner) {
         final Point player1Origin = new Point(marginY, marginX);
         final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
         final Point player3Origin = new Point(TABLE_HEIGTH / 2 + 4, marginX);
@@ -89,7 +89,15 @@ public class UI {
         }
         String cardsOnTableString = "▊".repeat(cardsOnTable.getCards().size());
         printOnTable(middle.y, middle.x - cardsOnTableString.length() / 2, cardsOnTableString);
-        io.gatherEmptyInput("Press enter to continue.");
+        io.gatherEmptyInput(winner + "\nPress enter to continue.");
+    }
+
+    public void displayTable(Player[] players, CardsOnTable cardsOnTable, boolean draw) {
+        displayTable(players, cardsOnTable, "Draw!");
+    }
+
+    public void displayTable(Player[] players, CardsOnTable cardsOnTable, Player winner) {
+        displayTable(players, cardsOnTable, "Player " + winner.getName() + " wins this round");
     }
 
     private Point getImagePoint(Point origin) {

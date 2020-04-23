@@ -65,8 +65,8 @@ public class Game {
                 ui.displayPlayerTopCard(currentPlayer);
                 userAttribute = currentPlayer.chooseAttribute();
                 draw = checkIfRoundDraw(userAttribute);
-                ui.displayTable(players, cardsOnTable);
                 if (draw) {
+                    ui.displayTable(players, cardsOnTable, draw);
                     cardsOnTable.collectPlayersTopCards(players);
                 }
             } while (draw && !isGameOver());
@@ -75,6 +75,7 @@ public class Game {
                 break;
             }
             Player roundWinner = returnRoundWinner(userAttribute);
+            ui.displayTable(players, cardsOnTable, roundWinner);
             cardsOnTable.collectPlayersTopCards(players);
             roundWinner.getHand().addHandCards(cardsOnTable);
             cardsOnTable.clearTable();
