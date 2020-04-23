@@ -34,7 +34,7 @@ public class CardParser {
                 System.out.println(card.getImage());
             }
         } catch (IOException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 
