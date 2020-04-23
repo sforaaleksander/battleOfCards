@@ -2,9 +2,9 @@ package com.codecool.battle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 
 public class Game {
     private Player[] players;
@@ -123,22 +123,38 @@ public class Game {
     }
 
     public boolean checkIfIsDrawInList(Player player, List<Player> winnerList) {
-        if (player != players[0] && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+        if (player != players[0]
+                && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
             return true;
         }
         return false;
     }
-    
+
+    private int findHighestValue(String attribute, List<Card> temporaryTopCards) {
+        switch (attribute) {
+            case ("MAXSPEED"):
+                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+            case ("ROARVOLUME"):
+                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+            case ("NUMBEROFTEETH"):
+                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+            default:
+                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+        }
+    }
+
+    private List<Card> createTemporaryTopCardsArr() {
+        List<Card> temporaryTopCards = new ArrayList<>();
+        for (Player player : players) {
+            temporaryTopCards.add(player.getHand().getTopCard());
+        }
+        return temporaryTopCards;
+    }
 
     public boolean checkIfRoundDraw(String attribute) {
-        int highestValue = players[currentPlayerInt].getHand().getTopCard().getValueByType(attribute);
-
-        // TODO STREAMS???
-        for (Player player : players) {
-            if (player.getHand().getTopCard().getValueByType(attribute) > highestValue) {
-                highestValue = player.getHand().getTopCard().getValueByType(attribute);
-            }
-        }
+        List<Card> temporaryTopCards = createTemporaryTopCardsArr();
+        int highestValue = findHighestValue(attribute, temporaryTopCards);
+        
         int highestValueCount = 0;
         for (Player player : players) {
             if (player.getHand().getTopCard().getValueByType(attribute) == highestValue) {
