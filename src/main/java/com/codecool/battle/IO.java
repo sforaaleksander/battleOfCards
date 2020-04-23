@@ -30,8 +30,7 @@ public class IO {
 
     public String gatherEmptyInput(String title) {
         System.out.println(title);
-        String userInput = scan.next().toUpperCase();
-        return userInput;
+        return scan.next().toUpperCase();
     }
 
     public int gatherIntInput(String title, int rangeMin, int rangeMax) {
