@@ -35,6 +35,10 @@ public class UI {
         System.out.println("▊".repeat(width));
     }
 
+    public void printOnTable(String toPrint) {
+        printOnTable(cursorPosition.getY(), cursorPosition.getX(), stringToArray(toPrint));
+    }
+
     public void printOnTable(Point point, String toPrint) {
         printOnTable(point.getY(), point.getX(), stringToArray(toPrint));
     }
@@ -90,8 +94,11 @@ public class UI {
             printOnTable(imagePoint, player.getHand().getTopCard().getImage());
         }
         String cardsOnTableString = "▊".repeat(cardsOnTable.getCards().size());
-        printOnTable(middle.getY(), middle.getX() - cardsOnTableString.length() / 2, cardsOnTableString);
-        io.gatherEmptyInput(winner + "\nPress enter to continue.");
+        printOnTable(middle.getY() - 1, middle.getX() - cardsOnTableString.length() / 2, cardsOnTableString);
+        printOnTable(middle.getY(), middle.getX() - winner.length() / 2, winner);
+        String pressEnter = "Press enter to continue.";
+        printOnTable(middle.getY(), middle.getX() - pressEnter.length() / 2, pressEnter);
+        gatherEmptyInput("");
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
@@ -104,6 +111,21 @@ public class UI {
 
     private Point getImagePoint(Point origin) {
         return new Point(origin.getY(), origin.getX() + 20);
+    }
+
+    public void gatherEmptyInput(String message) {
+        printOnTable(message);
+        io.gatherEmptyInput("");
+    }
+
+    public String gatherInput(String message) {
+        printOnTable(message);
+        return io.gatherInput(message);
+    }
+
+    public int gatherIntInput(String message, int rangeMin, int rangeMax) {
+        printOnTable(message);
+        return io.gatherIntInput(message, rangeMin, rangeMax);
     }
 
     public void clearScreen() {
