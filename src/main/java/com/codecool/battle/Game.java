@@ -132,20 +132,6 @@ public class Game {
         return highestValueCount > 1;
     }
 
-    // public Player returnRoundWinner(String attribute) {
-    // Player playerWithHighestValue = players[0];
-    // int higestValue =
-    // players[0].getHand().getTopCard().getValueByType(attribute);
-
-    // for (Player player : players) {
-    // if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
-    // playerWithHighestValue = player;
-    // higestValue = player.getHand().getTopCard().getValueByType(attribute);
-    // }
-    // }
-    // return playerWithHighestValue;
-    // }
-
     public Player returnRoundWinner(String attribute) {
         return Arrays.stream(players)
                 .max(Comparator.comparing(Player -> Player.getHand().getTopCard().getValueByType(attribute)))
