@@ -6,12 +6,33 @@ import java.util.Objects;
  * Point
  */
 public class Point {
-    public final int y;
-    public final int x;
+    private int y;
+    private int x;
 
     public Point(int y, int x) {
         this.y = y;
         this.x = x;
+    }
+
+    public Point() {
+        y = 0;
+        x = 0;
+    }
+
+    public void moveDown() {
+        y++;
+    }
+
+    public void moveUp() {
+        y--;
+    }
+
+    public void moveRight() {
+        x++;
+    }
+
+    public void moveLeft() {
+        x--;
     }
 
     @Override
@@ -30,5 +51,33 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(y, x);
+    }
+
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(int x) {
+        this.x = x;
     }
 }
