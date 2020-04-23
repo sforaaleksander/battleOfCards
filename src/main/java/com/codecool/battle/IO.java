@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class IO {
     public Scanner scan;
 
-
-    IO(){
+    IO() {
         scan = new Scanner(System.in);
         scan.useDelimiter(System.lineSeparator());
     }
@@ -35,20 +34,25 @@ public class IO {
 
     public int gatherIntInput(String title, int rangeMin, int rangeMax) {
         System.out.println(title);
-        String userInput;
-        int userInt = 1;
+        String userInput = "";
         boolean validInput = false;
         while (!validInput) {
             userInput = scan.next();
-            if (!userInput.equals("")) {
-                if (userInput.matches("^[0-9]*$")) {
-                    userInt = Integer.parseInt(userInput);
-                    if (userInt >= rangeMin && userInt <= rangeMax) {
-                        validInput = true;
-                    }
+            validInput = isNumberInRange(userInput, rangeMin, rangeMax);
+        }
+        return Integer.parseInt(userInput);
+    }
+
+    private boolean isNumberInRange(String userInput, int rangeMin, int rangeMax) {
+        int userInt = 1;
+        if (!userInput.equals("")) {
+            if (userInput.matches("^[0-9]*$")) {
+                userInt = Integer.parseInt(userInput);
+                if (userInt >= rangeMin && userInt <= rangeMax) {
+                    return true;
                 }
             }
         }
-        return userInt;
+        return false;
     }
 }
