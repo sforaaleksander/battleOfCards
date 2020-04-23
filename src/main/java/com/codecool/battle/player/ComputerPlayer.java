@@ -38,7 +38,8 @@ public class ComputerPlayer extends Player {
 
     private String chooseLucky() {
         int randomInt = ui.getGenerator().nextInt(4);
-        return CardAttribute.values()[randomInt].name();
+        String randomAttribute = CardAttribute.values()[randomInt].name();
+        return randomAttribute;
     }
 
     @Override
