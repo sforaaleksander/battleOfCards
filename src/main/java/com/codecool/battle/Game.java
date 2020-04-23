@@ -1,7 +1,11 @@
 package com.codecool.battle;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class Game {
     private Player[] players;
@@ -127,16 +131,22 @@ public class Game {
         return false;
     }
 
-    public Player returnRoundWinner(String attribute) {
-        Player playerWithHighestValue = players[0];
-        int higestValue = players[0].getHand().getTopCard().getValueByType(attribute);
+    // public Player returnRoundWinner(String attribute) {
+    //     Player playerWithHighestValue = players[0];
+    //     int higestValue = players[0].getHand().getTopCard().getValueByType(attribute);
 
-        for (Player player : players) {
-            if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
-                playerWithHighestValue = player;
-                higestValue = player.getHand().getTopCard().getValueByType(attribute);
-            }
-        }
-        return playerWithHighestValue;
+    //     for (Player player : players) {
+    //         if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
+    //             playerWithHighestValue = player;
+    //             higestValue = player.getHand().getTopCard().getValueByType(attribute);
+    //         }
+    //     }
+    //     return playerWithHighestValue;
+    // }   
+
+    public Player returnRoundWinner(String attribute) {
+        return Arrays.stream(this.getPlayers()).max(Comparator.comparing(Player -> getHand().getTopCard().getValueByType(attribute))); // :: to ->
+        // return playerWithHighestValue;
+ 
     }
 }
