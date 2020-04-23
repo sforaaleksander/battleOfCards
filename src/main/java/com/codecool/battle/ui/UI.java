@@ -73,7 +73,6 @@ public class UI {
     public void displayPlayerTopCard(int y, int x, Player player) {
         clearScreen();
         printBorders(TABLE_WIDTH, TABLE_HEIGHT);
-        printBorders(TABLE_WIDTH / 2, TABLE_HEIGHT / 2);
         printOnTable(y, x, "PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
         printOnTable(++y, x, player.getHand().getTopCard().toString());
         printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
@@ -98,14 +97,14 @@ public class UI {
         }
         String cardsOnTableString = "▊".repeat(cardsOnTable.getCards().size());
         printOnTable(middle.getY() - 1, middle.getX() - cardsOnTableString.length() / 2, cardsOnTableString);
-        printOnTable(middle.getY(), middle.getX() - winner.length() / 2, winner);
+        printOnTable(middle.getY(), middle.getX() - winner.length() / 2 + 5, winner);
         String pressEnter = "Press enter to continue.";
-        printOnTable(middle.getY(), middle.getX() - pressEnter.length() / 2, pressEnter);
+        printOnTable(middle.getY() + 1, middle.getX() - pressEnter.length() / 2, pressEnter);
         gatherEmptyInput("");
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
-        displayTable(players, cardsOnTable, "Draw!");
+        displayTable(players, cardsOnTable, "Draw!          ");
     }
 
     public void displayTable(Player[] players, CardsOnTable cardsOnTable, Player winner) {
