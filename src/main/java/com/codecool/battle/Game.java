@@ -82,6 +82,7 @@ public class Game {
     }
 
     private void endGame() {
+        ui.clearScreen();
         ui.getIo().gatherEmptyInput("GAME OVER!");
         List<Player> winnerList = new ArrayList<>();
         winnerList.add(players[0]);
