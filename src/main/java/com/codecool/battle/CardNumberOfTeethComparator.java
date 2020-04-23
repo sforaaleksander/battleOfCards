@@ -2,7 +2,7 @@ package com.codecool.battle;
 
 import java.util.Comparator;
 
-public class NumberOfTeethComparator implements Comparator<Card> {
+public class CardNumberOfTeethComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card1, Card card2) {

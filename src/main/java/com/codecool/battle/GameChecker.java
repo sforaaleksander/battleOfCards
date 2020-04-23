@@ -8,9 +8,22 @@ import java.util.List;
 
 public class GameChecker {
     private Player[] players;
+    private CardMaxSpeedComparator cardMaxSpeedComparator;
+    private CardRoarVolumeComparator cardRoarVolumeComparator;
+    private CardNumberOfTeethComparator cardNumberOfTeethComparator;
+    private CardWeightComparator cardWeightComparator;
 
     GameChecker(Player[] players) {
         this.players = players;
+        createComparators();
+    }
+
+    private void createComparators() {
+        this.cardMaxSpeedComparator = new CardMaxSpeedComparator();
+        this.cardRoarVolumeComparator = new CardRoarVolumeComparator();
+        this.cardNumberOfTeethComparator = new CardNumberOfTeethComparator();
+        this.cardWeightComparator = new CardWeightComparator();
+
     }
 
     public boolean isGameOver() {
@@ -22,16 +35,19 @@ public class GameChecker {
         return false;
     }
 
+    // TODO create Comparators in gameChecker constructor
     public int findHighestValue(String attribute, List<Card> temporaryTopCards) {
         switch (attribute) {
             case ("MAXSPEED"):
-                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+                return Collections.max(temporaryTopCards, cardMaxSpeedComparator).getAttributes().get(attribute);
             case ("ROARVOLUME"):
-                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+                return Collections.max(temporaryTopCards, cardRoarVolumeComparator).getAttributes()
+                        .get(attribute);
             case ("NUMBEROFTEETH"):
-                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+                return Collections.max(temporaryTopCards, cardNumberOfTeethComparator).getAttributes()
+                        .get(attribute);
             default:
-                return Collections.max(temporaryTopCards, new CardMaxSpeedComparator()).getAttributes().get(attribute);
+                return Collections.max(temporaryTopCards, cardWeightComparator).getAttributes().get(attribute);
         }
     }
 
