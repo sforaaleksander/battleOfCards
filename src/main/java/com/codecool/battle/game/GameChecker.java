@@ -54,7 +54,7 @@ public class GameChecker {
         }
     }
 
-    public List<Card> createTemporaryTopCardsArr() {
+    private List<Card> createTemporaryTopCardsArr() {
         List<Card> temporaryTopCards = new ArrayList<>();
         for (Player player : players) {
             temporaryTopCards.add(player.getHand().getTopCard());
