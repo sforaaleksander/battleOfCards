@@ -61,8 +61,8 @@ public class Card implements Comparable<Card> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name + "\n");
-        for (String key : attributes.keySet()) {
-            sb.append(key + ": " + attributes.get(key) + "\n");
+        for (CardAttribute ca : CardAttribute.values()) {
+            sb.append(ca.name() + ": " + attributes.get(ca.name()) + "\n");
         }
         return sb.toString();
     }
