@@ -58,6 +58,7 @@ public class Card implements Comparable<Card> {
         return 0;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name + "\n");
