@@ -73,15 +73,15 @@ public class UI {
     public void displayTable(Player[] players, CardsOnTable cardsOnTable) {
         final Point player1Origin = new Point(marginY, marginX);
         final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
-        final Point player3Origin = new Point(TABLE_HEIGTH / 2, marginX);
-        final Point player4Origin = new Point(TABLE_HEIGTH / 2, TABLE_WIDTH / 2);
-        final Point middle = new Point(TABLE_HEIGTH / 2 - 2, TABLE_WIDTH / 2 - 5);
+        final Point player3Origin = new Point(TABLE_HEIGTH / 2 + 4, marginX);
+        final Point player4Origin = new Point(TABLE_HEIGTH / 2 + 4, TABLE_WIDTH / 2);
+        final Point middle = new Point(TABLE_HEIGTH / 2 - 1, TABLE_WIDTH / 2 - 8);
         Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
         int currentPlayer = 0;
         printBorders();
         for (Player player : players) {
-            String playerString = "PLAYER " + player.getName() + " cards: " + player.getHand().getCards().size()
-                    + "\nTop card " + player.getHand().getTopCard().toString();
+            String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
+                    + "\nTop card:\n" + player.getHand().getTopCard().toString();
             Point imagePoint = getImagePoint(origins[currentPlayer]);
 
             printOnTable(origins[currentPlayer++], playerString);
