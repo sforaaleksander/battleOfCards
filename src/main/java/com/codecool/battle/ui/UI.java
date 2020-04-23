@@ -11,7 +11,6 @@ public class UI {
     private Point cursorPosition = new Point(1, 1);
     private final int marginY = 3;
     private final int marginX = 3;
-
     private IO io;
     private Random generator;
 
