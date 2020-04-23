@@ -81,41 +81,35 @@ public class Game {
         winnerList.add(players[0]);
         for (Player player : players) {
             if (isPlayersHandSizeIsBigger(player, winnerList)) {
-                winnerList.removeAll(winnerList);
+                winnerList.clear();
                 winnerList.add(player);
             } else if (checkIfIsDrawInList(player, winnerList)) {
                 winnerList.add(player);
             }
         }
-        String finalResult = "";
+        StringBuilder finalResult = new StringBuilder();
         if (winnerList.size() == 1) {
-            finalResult += "The winner is " + winnerList.get(0).getName();
+            finalResult.append("The winner is ").append(winnerList.get(0).getName());
         } else {
             int index = 0;
-            finalResult += "Draw! The winners are ";
+            finalResult.append("Draw! The winners are ");
             for (Player player : winnerList) {
-                finalResult += player.getName();
+                finalResult.append(player.getName());
                 index++;
                 if (index < winnerList.size()) {
-                    finalResult += " & ";
+                    finalResult.append(" & ");
                 }
             }
         }
-        ui.getIo().gatherEmptyInput(finalResult);
+        ui.getIo().gatherEmptyInput(finalResult.toString());
     }
 
     private boolean isPlayersHandSizeIsBigger(Player player, List<Player> winnerList) {
-        if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
-            return true;
-        }
-        return false;
+        return player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size();
     }
 
     private boolean checkIfIsDrawInList(Player player, List<Player> winnerList) {
-        if (player != players[0]
-                && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
-            return true;
-        }
-        return false;
+        return player != players[0]
+                && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size();
     }
 }
