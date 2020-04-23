@@ -65,6 +65,8 @@ public class UI {
 
     public void displayPlayerTopCard(int y, int x, Player player) {
         clearScreen();
+        printBorders(TABLE_WIDTH, TABLE_HEIGTH);
+        printBorders(TABLE_WIDTH / 2, TABLE_HEIGTH / 2);
         printOnTable(y, x, "PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
         printOnTable(++y, x, player.getHand().getTopCard().toString());
         printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
