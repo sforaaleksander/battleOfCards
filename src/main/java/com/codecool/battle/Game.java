@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class Game {
     private Player[] players;
@@ -90,11 +93,10 @@ public class Game {
         List<Player> winnerList = new ArrayList<>();
         winnerList.add(players[0]);
         for (Player player : players) {
-            if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
+            if (checkIfPlayersHandSizeIsBigger(player, winnerList)) {
                 winnerList.removeAll(winnerList);
                 winnerList.add(player);
-            } else if (player != players[0]
-                    && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+            } else if (checkIfIsDrawInList(player, winnerList)) {
                 winnerList.add(player);
             }
         }
@@ -114,6 +116,21 @@ public class Game {
         }
         ui.getIo().gatherEmptyInput(finalResult);
     }
+
+    public boolean checkIfPlayersHandSizeIsBigger(Player player, List<Player> winnerList) {
+        if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkIfIsDrawInList(Player player, List<Player> winnerList) {
+        if (player != players[0] && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+            return true;
+        }
+        return false;
+    }
+    
 
     public boolean checkIfRoundDraw(String attribute) {
         int highestValue = players[currentPlayerInt].getHand().getTopCard().getValueByType(attribute);
