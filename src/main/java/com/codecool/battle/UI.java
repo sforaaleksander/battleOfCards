@@ -75,7 +75,7 @@ public class UI {
         final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
         final Point player3Origin = new Point(TABLE_HEIGTH / 2 + 4, marginX);
         final Point player4Origin = new Point(TABLE_HEIGTH / 2 + 4, TABLE_WIDTH / 2);
-        final Point middle = new Point(TABLE_HEIGTH / 2 - 1, TABLE_WIDTH / 2 - 8);
+        final Point middle = new Point(TABLE_HEIGTH / 2, TABLE_WIDTH / 2);
         Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
         int currentPlayer = 0;
         printBorders();
@@ -87,7 +87,8 @@ public class UI {
             printOnTable(origins[currentPlayer++], playerString);
             printOnTable(imagePoint, player.getHand().getTopCard().getImage());
         }
-        printOnTable(middle, "draw cards: " + cardsOnTable.getCards().size());
+        String cardsOnTableString = "▊".repeat(cardsOnTable.getCards().size());
+        printOnTable(middle.y, middle.x - cardsOnTableString.length() / 2, cardsOnTableString);
         io.gatherEmptyInput("Press enter to continue.");
     }
 
