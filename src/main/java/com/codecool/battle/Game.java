@@ -1,6 +1,7 @@
 package com.codecool.battle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -66,8 +67,8 @@ public class Game {
                 Player currentPlayer = players[currentPlayerInt];
                 ui.displayPlayerTopCard(currentPlayer);
                 userAttribute = currentPlayer.chooseAttribute();
-                ui.displayTable(players, cardsOnTable);
                 draw = checkIfRoundDraw(userAttribute);
+                ui.displayTable(players, cardsOnTable);
                 if (draw) {
                     cardsOnTable.collectPlayersTopCards(players);
                 }
@@ -86,6 +87,7 @@ public class Game {
     }
 
     private void endGame() {
+        ui.clearScreen();
         ui.getIo().gatherEmptyInput("GAME OVER!");
         List<Player> winnerList = new ArrayList<>();
         winnerList.add(players[0]);
@@ -93,7 +95,8 @@ public class Game {
             if (player.getHand().getCards().size() > winnerList.get(0).getHand().getCards().size()) {
                 winnerList.removeAll(winnerList);
                 winnerList.add(player);
-            } else if (player != players[0] && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
+            } else if (player != players[0]
+                    && player.getHand().getCards().size() == winnerList.get(0).getHand().getCards().size()) {
                 winnerList.add(player);
             }
         }
@@ -117,36 +120,38 @@ public class Game {
     public boolean checkIfRoundDraw(String attribute) {
         int highestValue = players[currentPlayerInt].getHand().getTopCard().getValueByType(attribute);
 
-        //TODO STREAMS???
+        // TODO STREAMS???
         for (Player player : players) {
             if (player.getHand().getTopCard().getValueByType(attribute) > highestValue) {
                 highestValue = player.getHand().getTopCard().getValueByType(attribute);
             }
         }
+        int highestValueCount = 0;
         for (Player player : players) {
-            if (player.getHand().getTopCard().getValueByType(attribute) == highestValue && players[currentPlayerInt] != player) {
-                return true;
+            if (player.getHand().getTopCard().getValueByType(attribute) == highestValue) {
+                highestValueCount++;
             }
         }
-        return false;
+        return highestValueCount > 1;
     }
 
     // public Player returnRoundWinner(String attribute) {
-    //     Player playerWithHighestValue = players[0];
-    //     int higestValue = players[0].getHand().getTopCard().getValueByType(attribute);
+    // Player playerWithHighestValue = players[0];
+    // int higestValue =
+    // players[0].getHand().getTopCard().getValueByType(attribute);
 
-    //     for (Player player : players) {
-    //         if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
-    //             playerWithHighestValue = player;
-    //             higestValue = player.getHand().getTopCard().getValueByType(attribute);
-    //         }
-    //     }
-    //     return playerWithHighestValue;
-    // }   
+    // for (Player player : players) {
+    // if (player.getHand().getTopCard().getValueByType(attribute) > higestValue) {
+    // playerWithHighestValue = player;
+    // higestValue = player.getHand().getTopCard().getValueByType(attribute);
+    // }
+    // }
+    // return playerWithHighestValue;
+    // }
 
     public Player returnRoundWinner(String attribute) {
-        return Arrays.stream(this.getPlayers()).max(Comparator.comparing(Player -> getHand().getTopCard().getValueByType(attribute))); // :: to ->
-        // return playerWithHighestValue;
- 
+        return Arrays.stream(players)
+                .max(Comparator.comparing(Player -> Player.getHand().getTopCard().getValueByType(attribute)))
+                .orElse(null);
     }
 }
