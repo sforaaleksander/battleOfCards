@@ -58,7 +58,7 @@ public class Game {
 
     public void gamePlay() {
         while (!isGameOver()) {
-            boolean draw = false;
+            boolean draw;
             String userAttribute = "";
             do {
                 Player currentPlayer = players[currentPlayerInt];
@@ -66,7 +66,7 @@ public class Game {
                 userAttribute = currentPlayer.chooseAttribute();
                 draw = checkIfRoundDraw(userAttribute);
                 if (draw) {
-                    ui.displayTable(players, cardsOnTable, draw);
+                    ui.displayTable(players, cardsOnTable);
                     cardsOnTable.collectPlayersTopCards(players);
                 }
             } while (draw && !isGameOver());
