@@ -19,10 +19,6 @@ public class UI {
         this.generator = new Random();
     }
 
-    public IO getIo() {
-        return io;
-    }
-
     public Random getGenerator() {
         return generator;
     }
@@ -35,18 +31,18 @@ public class UI {
     }
 
     public void displayNewTable(String[] content) {
-        printBorders(TABLE_WIDTH, TABLE_HEIGHT);
+        printBorders();
 
         printOnTable(marginY, marginX, content);
     }
 
-    private void printBorders(int width, int height) {
+    private void printBorders() {
         clearScreen();
-        System.out.println("▊".repeat(width));
-        for (int i = 0; i < height; i++) {
-            System.out.println("▊" + " ".repeat(width - 2) + "▊");
+        System.out.println("▊".repeat(TABLE_WIDTH));
+        for (int i = 0; i < TABLE_HEIGHT; i++) {
+            System.out.println("▊" + " ".repeat(TABLE_WIDTH - 2) + "▊");
         }
-        System.out.println("▊".repeat(width));
+        System.out.println("▊".repeat(TABLE_WIDTH));
     }
 
     public void printOnTable(String toPrint) {
@@ -84,7 +80,7 @@ public class UI {
         final Point player4Origin = new Point(TABLE_HEIGHT / 2 + 4, TABLE_WIDTH / 2);
         Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
         int currentPlayer = 0;
-        printBorders(TABLE_WIDTH, TABLE_HEIGHT);
+        printBorders();
         for (Player player : players) {
             if (player.equals(playerX)) {
                 String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
@@ -105,7 +101,7 @@ public class UI {
         final Point middle = new Point(TABLE_HEIGHT / 2, TABLE_WIDTH / 2);
         Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
         int currentPlayer = 0;
-        printBorders(TABLE_WIDTH, TABLE_HEIGHT);
+        printBorders();
         for (Player player : players) {
             String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
                     + "\nTop card:\n" + player.getHand().getTopCard().toString();

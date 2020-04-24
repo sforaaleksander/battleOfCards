@@ -17,22 +17,18 @@ public class Deck {
 
     private void multipleRepoCards() {
         int index = 0;
-        try {
-            int deckSize = 30;
-            while (cards.size() < deckSize) {
-                Card clonedCard = cloneCard(index);
-                cards.add(clonedCard);
-                index++;
-                if (index == cardRepository.getCards().size()) {
-                    index = 0;
-                }
+        int deckSize = 30;
+        while (cards.size() < deckSize) {
+            Card clonedCard = cloneCard(index);
+            cards.add(clonedCard);
+            index++;
+            if (index == cardRepository.getCards().size()) {
+                index = 0;
             }
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
         }
     }
 
-    private Card cloneCard(int index) throws CloneNotSupportedException {
+    private Card cloneCard(int index) {
         return (Card) cardRepository.getCards().get(index).clone();
     }
 

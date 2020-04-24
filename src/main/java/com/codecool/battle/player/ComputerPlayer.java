@@ -26,7 +26,6 @@ public class ComputerPlayer extends Player {
             if (entry.getValue() > maxCardValue) {
                 maxCardValue = entry.getValue();
                 attribute = entry.getKey();
-                ui.printOnTable("chosen attribute: " + attribute);
             }
         }
         ui.gatherEmptyInput("chosen attribute: " + attribute);

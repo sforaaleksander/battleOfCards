@@ -14,23 +14,6 @@ public class Point {
         this.x = x;
     }
 
-    //TODO
-    public void moveDown() {
-        y++;
-    }
-
-    public void moveUp() {
-        y--;
-    }
-
-    public void moveRight() {
-        x++;
-    }
-
-    public void moveLeft() {
-        x--;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null)
