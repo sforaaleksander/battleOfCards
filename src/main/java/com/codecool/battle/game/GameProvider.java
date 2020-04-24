@@ -10,6 +10,7 @@ import com.codecool.battle.player.HumanPlayer;
 import com.codecool.battle.player.Player;
 import com.codecool.battle.ui.IO;
 import com.codecool.battle.ui.UI;
+import com.codecool.battle.ui.WelcomeScreen;
 
 
 public class GameProvider {
@@ -45,6 +46,8 @@ public class GameProvider {
 
     private void handleMenu() {
         while (isRunning) {
+            new WelcomeScreen(ui).printWelcomeScreen();
+            ui.gatherEmptyInput("");
             ui.displayMenu();
             String userChoice = ui.gatherInput("");
             mainMenuMap.get(userChoice).run();
