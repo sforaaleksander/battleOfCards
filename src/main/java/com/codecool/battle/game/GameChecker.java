@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.codecool.battle.card.Card;
 import com.codecool.battle.card.comparator.*;
@@ -39,37 +40,35 @@ public class GameChecker {
         return false;
     }
 
-    public int findHighestValue(String attribute, List<Card> temporaryTopCards) {
+    public int findHighestValue(String attribute, List<Card> topCards) {
         switch (attribute) {
             case ("MAXSPEED"):
-                return Collections.max(temporaryTopCards, cardMaxSpeedComparator).getAttributes().get(attribute);
+                return Collections.max(topCards, cardMaxSpeedComparator).getAttributes().get(attribute);
             case ("ROARVOLUME"):
-                return Collections.max(temporaryTopCards, cardRoarVolumeComparator).getAttributes()
+                return Collections.max(topCards, cardRoarVolumeComparator).getAttributes()
                         .get(attribute);
             case ("NUMBEROFTEETH"):
-                return Collections.max(temporaryTopCards, cardNumberOfTeethComparator).getAttributes()
+                return Collections.max(topCards, cardNumberOfTeethComparator).getAttributes()
                         .get(attribute);
             default:
-                return Collections.max(temporaryTopCards, cardWeightComparator).getAttributes().get(attribute);
+                return Collections.max(topCards, cardWeightComparator).getAttributes().get(attribute);
         }
     }
 
-    private List<Card> createTemporaryTopCardsArr() {
-        List<Card> temporaryTopCards = new ArrayList<>();
-        for (Player player : players) {
-            temporaryTopCards.add(player.getHand().getTopCard());
-        }
-        return temporaryTopCards;
+    private List<Card> createTopCardsArray() {
+        return Arrays.stream(players)
+                     .map(player -> player.getHand().getTopCard())
+                     .collect(Collectors.toList());
     }
 
     public boolean checkIfRoundDraw(String attribute) {
-        List<Card> temporaryTopCards = createTemporaryTopCardsArr();
-        int highestValue = findHighestValue(attribute, temporaryTopCards);
+        List<Card> topCards = createTopCardsArray();
+        int highestValue = findHighestValue(attribute, topCards);
 
         int highestValueCount = 0;
 
         // TODO how could we implement comparators down here?
-        for (Card card : temporaryTopCards) {
+        for (Card card : topCards) {
             if (card.getValueByType(attribute) == highestValue) {
                 highestValueCount++;
             }
