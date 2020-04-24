@@ -29,13 +29,14 @@ public class ComputerPlayer extends Player {
                 ui.printOnTable("chosen attribute: " + attribute);
             }
         }
-        ui.gatherEmptyInput("Press enter to continue.");
+        ui.gatherEmptyInput("chosen attribute: " + attribute);
         return attribute;
     }
 
     private String chooseLucky() {
         int randomInt = ui.getGenerator().nextInt(4);
         String randomAttribute = CardAttribute.values()[randomInt].name();
+        ui.gatherEmptyInput("chosen attribute: " + randomAttribute);
         return randomAttribute;
     }
 
