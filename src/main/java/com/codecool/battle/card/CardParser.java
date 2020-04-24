@@ -87,8 +87,6 @@ public class CardParser {
             Card card = new Card(name);
             setAttributeValues(card, element);
 
-            System.out.println(card.getName());
-
             this.cardRepository.addCard(card);
         }
     }
