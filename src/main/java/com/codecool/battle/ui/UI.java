@@ -77,16 +77,24 @@ public class UI {
         return str.split("\n");
     }
 
-    public void displayPlayerTopCard(Player player, Player[] players) {
-        displayPlayerTopCard(marginY, marginX, player);
-    }
-
-    public void displayPlayerTopCard(int y, int x, Player player) {
-        clearScreen();
+    public void displayPlayerTopCard(Player playerX, Player[] players) {
+        final Point player1Origin = new Point(marginY, marginX);
+        final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
+        final Point player3Origin = new Point(TABLE_HEIGHT / 2 + 4, marginX);
+        final Point player4Origin = new Point(TABLE_HEIGHT / 2 + 4, TABLE_WIDTH / 2);
+        Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
+        int currentPlayer = 0;
         printBorders(TABLE_WIDTH, TABLE_HEIGHT);
-        printOnTable(y, x, "PLAYER " + player.getName() + " num. of cards: " + player.getHand().getCards().size());
-        printOnTable(++y, x, player.getHand().getTopCard().toString());
-        printOnTable(y, x + 20, player.getHand().getTopCard().getImage());
+        for (Player player : players) {
+            if (player.equals(playerX)) {
+                String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
+                                      + "\nTop card:\n" + player.getHand().getTopCard().toString();
+                Point imagePoint = getImagePoint(origins[currentPlayer]);
+
+                printOnTable(origins[currentPlayer], playerString);
+                printOnTable(imagePoint, player.getHand().getTopCard().getImage());}
+            currentPlayer++;
+        }
     }
 
     private void displayTable(Player[] players, CardsOnTable cardsOnTable, String winner) {
