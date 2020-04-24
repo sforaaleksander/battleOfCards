@@ -41,7 +41,8 @@ public class Deck {
         int cardsPerPlayer = cards.size() / players.length;
         for (Player player : players) {
             for (int i = 0; i < cardsPerPlayer; i++) {
-                player.getHand().addCard(cards.pop());
+                player.getHand().addCard(cards.firstElement());
+                Collections.rotate(cards, -1);
             }
         }
     }
