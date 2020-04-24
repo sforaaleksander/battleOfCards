@@ -137,12 +137,12 @@ public class UI {
 
     public String gatherInput(String message) {
         printOnTable(message);
-        return io.gatherInput();
+        return io.gatherInput(this);
     }
 
     public int gatherIntInput(String message, int rangeMin, int rangeMax) {
         printOnTable(message);
-        return io.gatherIntInput(rangeMin, rangeMax);
+        return io.gatherIntInput(rangeMin, rangeMax, this);
     }
 
     public void clearScreen() {

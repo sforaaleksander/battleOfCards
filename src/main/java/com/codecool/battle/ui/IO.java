@@ -10,12 +10,12 @@ public class IO {
         scan.useDelimiter(System.lineSeparator());
     }
 
-    public String gatherInput() {
+    public String gatherInput(UI ui) {
         boolean validInput = true;
         String userInput;
         do {
             if (!validInput) {
-                System.out.println("Your input must contain at least one character. Enter again: ");
+                ui.printOnTable("Your input must contain at least one character. Enter again: ");
             }
             validInput = false;
             userInput = scan.next().toUpperCase();
@@ -30,17 +30,17 @@ public class IO {
         scan.next();
     }
 
-    public int gatherIntInput(int rangeMin, int rangeMax) {
+    public int gatherIntInput(int rangeMin, int rangeMax, UI ui) {
         String userInput = "";
         boolean validInput = false;
         while (!validInput) {
             userInput = scan.next();
-            validInput = isNumberInRange(userInput, rangeMin, rangeMax);
+            validInput = isNumberInRange(userInput, rangeMin, rangeMax, ui);
         }
         return Integer.parseInt(userInput);
     }
 
-    private boolean isNumberInRange(String userInput, int rangeMin, int rangeMax) {
+    private boolean isNumberInRange(String userInput, int rangeMin, int rangeMax, UI ui) {
         int userInt;
         if (!userInput.equals("")) {
             if (userInput.matches("^[0-9]*$")) {
@@ -48,6 +48,7 @@ public class IO {
                 return userInt >= rangeMin && userInt <= rangeMax;
             }
         }
+        ui.printOnTable("Invalid input, please try again: ");
         return false;
     }
 }
