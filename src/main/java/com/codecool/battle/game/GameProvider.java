@@ -70,13 +70,25 @@ public class GameProvider {
         game.gamePlay();
     }
 
-    public void howTo() {// TODO
+    private void howTo() {
+        ui.displayNewTable(new String[] { "Start a game, chose number of human players and computer players.",
+                                          "Max number of players is 4.",
+                                          "",
+                                          "Chose card attribute to compare with other players' top cards.",
+                                          "(1) NUMBEROFTEETH",
+                                          "(2) ROARVOLUME",
+                                          "(3) MAXSPEED",
+                                          "(4) WEIGHT",
+                                          "",
+                                          "When one of the players loses all cards game ends.",
+                                          "Player with most cards left in his hand wins." });
+        ui.gatherEmptyInput("");
     }
 
-    public void about() {// TODO
+    private void about() {// TODO
     }
 
-    public void exitGame() {
+    private void exitGame() {
         isRunning = false;
     }
 
