@@ -29,12 +29,16 @@ public class UI {
     }
 
     public void displayMenu() {
+        displayNewTable(new String[] { "(1) Start new game",
+                                       "(2) How to play",
+                                       "(3) About authors",
+                                       "(0) Exit" });
+    }
+
+    public void displayNewTable(String[] content) {
         printBorders(TABLE_WIDTH, TABLE_HEIGHT);
 
-        printOnTable(marginY, marginX, new String[] { "(1) Start new game",
-                                                      "(2) How to play",
-                                                      "(3) About authors",
-                                                      "(0) Exit" });
+        printOnTable(marginY, marginX, content);
     }
 
     private void printBorders(int width, int height) {
@@ -74,7 +78,7 @@ public class UI {
         return str.split("\n");
     }
 
-    public void displayPlayerTopCard(Player player) {
+    public void displayPlayerTopCard(Player player, Player[] players) {
         displayPlayerTopCard(marginY, marginX, player);
     }
 
