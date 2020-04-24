@@ -55,7 +55,6 @@ public class Game {
                 }
             } while (draw && !gameChecker.isGameOver());
             if (gameChecker.isGameOver()) {
-                endGame();
                 break;
             }
             Player roundWinner = gameChecker.returnRoundWinner(userAttribute);
@@ -65,6 +64,7 @@ public class Game {
             cardsOnTable.clearTable();
             changeToNextPlayer();
         }
+        endGame();
     }
 
     private void endGame() {
