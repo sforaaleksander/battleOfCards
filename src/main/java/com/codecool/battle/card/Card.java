@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Card implements Comparable<Card> {
     private String name;
-    private Map<String, Integer> attributes;
+    private Map<CardAttribute, Integer> attributes;
     private String[] image;
 
     Card(String name) {
@@ -13,17 +13,17 @@ public class Card implements Comparable<Card> {
         this.attributes = new HashMap<>();
     }
 
-    private Card(String name, Map<String, Integer> attributes, String[] image) {
+    private Card(String name, Map<CardAttribute, Integer> attributes, String[] image) {
         this.name = name;
         this.attributes = new HashMap<>();
-        for (String key : attributes.keySet()) {
+        for (CardAttribute key : attributes.keySet()) {
             this.attributes.put(key, attributes.get(key));
         }
         this.image = new String[image.length];
         System.arraycopy(image, 0, this.image, 0, image.length);
     }
 
-    public void setAttributeByType(String type, Integer value) {
+    public void setAttributeByType(CardAttribute type, Integer value) {
         attributes.put(type, value);
     }
 
@@ -39,11 +39,11 @@ public class Card implements Comparable<Card> {
         this.image = image;
     }
 
-    public int getValueByType(String type) {
+    public int getValueByType(CardAttribute type) {
         return attributes.get(type);
     }
 
-    public Map<String, Integer> getAttributes() {
+    public Map<CardAttribute, Integer> getAttributes() {
         return attributes;
     }
 
@@ -61,7 +61,7 @@ public class Card implements Comparable<Card> {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append("\n");
         for (CardAttribute ca : CardAttribute.values()) {
-            sb.append(ca.name()).append(": ").append(attributes.get(ca.name())).append("\n");
+            sb.append(ca.name()).append(": ").append(attributes.get(ca)).append("\n");
         }
         return sb.toString();
     }

@@ -17,12 +17,12 @@ public class ComputerPlayer extends Player {
         return ui.getGenerator().nextInt(2) == 0 ? "SMART" : "LUCKY";
     }
 
-    private String chooseSmart() {
-        Map.Entry<String, Integer> first = this.getHand().getTopCard().getAttributes().entrySet().iterator().next();
-        String attribute = first.getKey();
+    private CardAttribute chooseSmart() {
+        Map.Entry<CardAttribute, Integer> first = this.getHand().getTopCard().getAttributes().entrySet().iterator().next();
+        CardAttribute attribute = first.getKey();
         int maxCardValue = first.getValue();
 
-        for (Map.Entry<String, Integer> entry : this.getHand().getTopCard().getAttributes().entrySet()) {
+        for (Map.Entry<CardAttribute, Integer> entry : this.getHand().getTopCard().getAttributes().entrySet()) {
             if (entry.getValue() > maxCardValue) {
                 maxCardValue = entry.getValue();
                 attribute = entry.getKey();
@@ -32,15 +32,15 @@ public class ComputerPlayer extends Player {
         return attribute;
     }
 
-    private String chooseLucky() {
+    private CardAttribute chooseLucky() {
         int randomInt = ui.getGenerator().nextInt(4);
-        String randomAttribute = CardAttribute.values()[randomInt].name();
+        CardAttribute randomAttribute = CardAttribute.values()[randomInt];
         ui.gatherEmptyInput("chosen attribute: " + randomAttribute);
         return randomAttribute;
     }
 
     @Override
-    public String chooseAttribute() {
+    public CardAttribute chooseAttribute() {
         if (smartOrLucky.equals("SMART")) {
             return chooseSmart();
         }

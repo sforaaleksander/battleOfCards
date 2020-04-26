@@ -98,7 +98,7 @@ public class CardParser {
 
         for (int i = 0; i < attributeList.getLength(); i++) {
             Element attr = (Element) attributeList.item(i);
-            String type = attr.getAttribute("type").toUpperCase();
+            CardAttribute type = CardAttribute.valueOf(attr.getAttribute("type").toUpperCase());
             int value = Integer.parseInt(attr.getTextContent());
 
             card.setAttributeByType(type, value);

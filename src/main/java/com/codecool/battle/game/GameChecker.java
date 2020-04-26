@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.codecool.battle.card.Card;
+import com.codecool.battle.card.CardAttribute;
 import com.codecool.battle.card.comparator.*;
 import com.codecool.battle.player.Player;
 
@@ -40,14 +41,14 @@ public class GameChecker {
         return false;
     }
 
-    public int findHighestValue(String attribute, List<Card> topCards) {
+    public int findHighestValue(CardAttribute attribute, List<Card> topCards) {
         switch (attribute) {
-            case ("MAXSPEED"):
+            case MAXSPEED:
                 return Collections.max(topCards, cardMaxSpeedComparator).getAttributes().get(attribute);
-            case ("ROARVOLUME"):
+            case ROARVOLUME:
                 return Collections.max(topCards, cardRoarVolumeComparator).getAttributes()
                         .get(attribute);
-            case ("NUMBEROFTEETH"):
+            case NUMBEROFTEETH:
                 return Collections.max(topCards, cardNumberOfTeethComparator).getAttributes()
                         .get(attribute);
             default:
@@ -61,7 +62,7 @@ public class GameChecker {
                      .collect(Collectors.toList());
     }
 
-    public boolean checkIfRoundDraw(String attribute) {
+    public boolean checkIfRoundDraw(CardAttribute attribute) {
         List<Card> topCards = createTopCardsArray();
         int highestValue = findHighestValue(attribute, topCards);
 
@@ -76,7 +77,7 @@ public class GameChecker {
         return highestValueCount > 1;
     }
 
-    public Player returnRoundWinner(String attribute) {
+    public Player returnRoundWinner(CardAttribute attribute) {
         return Arrays.stream(players)
                 .max(Comparator.comparing(Player -> Player.getHand().getTopCard().getValueByType(attribute)))
                 .orElse(null);

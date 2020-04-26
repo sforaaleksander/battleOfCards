@@ -9,8 +9,8 @@ public class CardNumberOfTeethComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card1, Card card2) {
-        return Integer.compare(card1.getAttributes().get(CardAttribute.NUMBEROFTEETH.name()),
-                card2.getAttributes().get(CardAttribute.NUMBEROFTEETH.name()));
+        return Integer.compare(card1.getAttributes().get(CardAttribute.NUMBEROFTEETH),
+                card2.getAttributes().get(CardAttribute.NUMBEROFTEETH));
     }
 
 }

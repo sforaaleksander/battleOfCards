@@ -1,6 +1,7 @@
 package com.codecool.battle.player;
 
 import com.github.tomaslanger.chalk.Chalk;
+import com.codecool.battle.card.CardAttribute;
 import com.codecool.battle.ui.UI;
 
 
@@ -19,7 +20,7 @@ public abstract class Player {
         this.name = name;
     }
 
-    public abstract String chooseAttribute();
+    public abstract CardAttribute chooseAttribute();
 
     public Chalk getName() {
         return Chalk.on(name).red();

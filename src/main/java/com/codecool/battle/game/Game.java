@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.codecool.battle.ui.UI;
+import com.codecool.battle.card.CardAttribute;
 import com.codecool.battle.card.CardsOnTable;
 import com.codecool.battle.card.Deck;
 import com.codecool.battle.player.Player;
@@ -43,7 +44,7 @@ public class Game {
     public void gamePlay() {
         while (!gameChecker.isGameOver()) {
             boolean draw;
-            String userAttribute;
+            CardAttribute userAttribute;
             do {
                 Player currentPlayer = players[currentPlayerInt];
                 ui.displayPlayerTopCard(currentPlayer, players);
