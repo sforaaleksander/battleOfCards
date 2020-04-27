@@ -47,7 +47,7 @@ public class Game {
             CardAttribute userAttribute;
             do {
                 Player currentPlayer = players[currentPlayerInt];
-                ui.displayPlayerTopCard(currentPlayer, players);
+                ui.displayPlayerTopCard(currentPlayer);
                 userAttribute = currentPlayer.chooseAttribute();
                 draw = gameChecker.checkIfRoundDraw(userAttribute);
                 if (draw) {
