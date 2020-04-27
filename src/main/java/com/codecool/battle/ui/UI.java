@@ -1,23 +1,37 @@
 package com.codecool.battle.ui;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 import com.codecool.battle.card.CardsOnTable;
 import com.codecool.battle.player.Player;
 
 public class UI {
     private final int TABLE_WIDTH = 170;
-    private final int TABLE_HEIGHT = 40;
+    private final int TABLE_HEIGHT = 41;
     private Point cursorPosition = new Point(1, 1);
     private final int marginY = 3;
     private final int marginX = 3;
     private IO io;
     private Random generator;
+    private Map<Player, Point> playersPoints = new HashMap<>();
 
     public UI(IO io) {
         this.io = io;
         this.generator = new Random();
+    }
+
+    public void setPlayersPoints(Player[] players) {
+        final Point player1Origin = new Point(marginY, marginX);
+        final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
+        final Point player3Origin = new Point(TABLE_HEIGHT / 2 + 4, marginX);
+        final Point player4Origin = new Point(TABLE_HEIGHT / 2 + 4, TABLE_WIDTH / 2);
+        Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
+
+        for (int index = 0; index < players.length; index++) {
+            playersPoints.put(players[index], origins[index]);
+        }
     }
 
     public Random getGenerator() {
@@ -74,46 +88,28 @@ public class UI {
         return str.split("\n");
     }
 
-    public void displayPlayerTopCard(Player currentPlayer, Player[] players) {
-        final Point player1Origin = new Point(marginY, marginX);
-        final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
-        final Point player3Origin = new Point(TABLE_HEIGHT / 2 + 4, marginX);
-        final Point player4Origin = new Point(TABLE_HEIGHT / 2 + 4, TABLE_WIDTH / 2);
-        Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
+    public void displayPlayerTopCard(Player player) {
         printBorders();
-        int index = getPlayerIndex(currentPlayer, players);
-        String playerString = "PLAYER " + currentPlayer.getName() + "\ncards: " + currentPlayer.getHand().getCards().size()
-                + "\nTop card:\n" + currentPlayer.getHand().getTopCard().toString();
-        Point imagePoint = getImagePoint(origins[index]);
-        printOnTable(origins[index], playerString);
-        printOnTable(imagePoint, currentPlayer.getHand().getTopCard().getImage());
+        displayPlayer(player);
     }
 
-    private int getPlayerIndex(Player currentPlayer, Player[] players) {
-        return IntStream.range(0, players.length)
-                        .filter(index -> currentPlayer.equals(players[index]))
-                        .findFirst()
-                        .orElse(-1);
+    private void displayPlayer(Player player) {
+        String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
+                + "\nTop card:\n" + player.getHand().getTopCard().toString();
+        Point imagePoint = getImagePoint(playersPoints.get(player));
+        printOnTable(playersPoints.get(player), playerString);
+        printOnTable(imagePoint, player.getHand().getTopCard().getImage());
     }
 
     private void displayTable(Player[] players, CardsOnTable cardsOnTable, String winner) {
-        final Point player1Origin = new Point(marginY, marginX);
-        final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
-        final Point player3Origin = new Point(TABLE_HEIGHT / 2 + 4, marginX);
-        final Point player4Origin = new Point(TABLE_HEIGHT / 2 + 4, TABLE_WIDTH / 2);
-        final Point middle = new Point(TABLE_HEIGHT / 2, TABLE_WIDTH / 2);
-        Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
-        int currentPlayer = 0;
         printBorders();
         for (Player player : players) {
-            String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
-                    + "\nTop card:\n" + player.getHand().getTopCard().toString();
-            Point imagePoint = getImagePoint(origins[currentPlayer]);
-
-            printOnTable(origins[currentPlayer++], playerString);
-            printOnTable(imagePoint, player.getHand().getTopCard().getImage());
+            displayPlayer(player);
         }
+
         String cardsOnTableString = "▊".repeat(cardsOnTable.getCards().size());
+        final Point middle = new Point(TABLE_HEIGHT / 2, TABLE_WIDTH / 2);
+
         printOnTable(middle.getY() - 1, middle.getX() - cardsOnTableString.length() / 2, cardsOnTableString);
         printOnTable(middle.getY(), middle.getX() - winner.length() / 2 + 5, winner);
         String pressEnter = "Press enter to continue.";
