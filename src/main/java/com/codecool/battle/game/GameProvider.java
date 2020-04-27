@@ -70,6 +70,7 @@ public class GameProvider {
         createComputerPlayers(game);
         setPlayersNames(game);
         game.getDeck().distributeCards(game.getPlayers());
+        ui.setPlayersPoints(game.getPlayers());
         game.gamePlay();
     }
 
