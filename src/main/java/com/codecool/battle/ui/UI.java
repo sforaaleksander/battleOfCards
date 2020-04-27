@@ -1,6 +1,7 @@
 package com.codecool.battle.ui;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 import com.codecool.battle.card.CardsOnTable;
 import com.codecool.battle.player.Player;
@@ -73,24 +74,26 @@ public class UI {
         return str.split("\n");
     }
 
-    public void displayPlayerTopCard(Player playerX, Player[] players) {
+    public void displayPlayerTopCard(Player currentPlayer, Player[] players) {
         final Point player1Origin = new Point(marginY, marginX);
         final Point player2Origin = new Point(marginY, TABLE_WIDTH / 2);
         final Point player3Origin = new Point(TABLE_HEIGHT / 2 + 4, marginX);
         final Point player4Origin = new Point(TABLE_HEIGHT / 2 + 4, TABLE_WIDTH / 2);
         Point[] origins = { player1Origin, player2Origin, player3Origin, player4Origin };
-        int currentPlayer = 0;
         printBorders();
-        for (Player player : players) {
-            if (player.equals(playerX)) {
-                String playerString = "PLAYER " + player.getName() + "\ncards: " + player.getHand().getCards().size()
-                                      + "\nTop card:\n" + player.getHand().getTopCard().toString();
-                Point imagePoint = getImagePoint(origins[currentPlayer]);
+        int index = getPlayerIndex(currentPlayer, players);
+        String playerString = "PLAYER " + currentPlayer.getName() + "\ncards: " + currentPlayer.getHand().getCards().size()
+                + "\nTop card:\n" + currentPlayer.getHand().getTopCard().toString();
+        Point imagePoint = getImagePoint(origins[index]);
+        printOnTable(origins[index], playerString);
+        printOnTable(imagePoint, currentPlayer.getHand().getTopCard().getImage());
+    }
 
-                printOnTable(origins[currentPlayer], playerString);
-                printOnTable(imagePoint, player.getHand().getTopCard().getImage());}
-            currentPlayer++;
-        }
+    private int getPlayerIndex(Player currentPlayer, Player[] players) {
+        return IntStream.range(0, players.length)
+                        .filter(index -> currentPlayer.equals(players[index]))
+                        .findFirst()
+                        .orElse(-1);
     }
 
     private void displayTable(Player[] players, CardsOnTable cardsOnTable, String winner) {
